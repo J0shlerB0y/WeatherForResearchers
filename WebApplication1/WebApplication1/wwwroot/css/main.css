@@ -5,17 +5,87 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
-html, body, div, span, applet, object,
-iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
-pre, a, abbr, acronym, address, big, cite,
-code, del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var, b,
-u, i, center, dl, dt, dd, ol, ul, li, fieldset,
-form, label, legend, table, caption, tbody,
-tfoot, thead, tr, th, td, article, aside,
-canvas, details, embed, figure, figcaption,
-footer, header, hgroup, menu, nav, output, ruby,
-section, summary, time, mark, audio, video {
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
   margin: 0;
   padding: 0;
   border: 0;
@@ -24,8 +94,17 @@ section, summary, time, mark, audio, video {
   vertical-align: baseline;
 }
 
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
   display: block;
 }
 
@@ -33,14 +112,18 @@ body {
   line-height: 1;
 }
 
-ol, ul {
+ol,
+ul {
   list-style: none;
 }
 
-blockquote, q {
+blockquote,
+q {
   quotes: none;
 }
-blockquote:before, blockquote:after, q:before, q:after {
+blockquote:before, blockquote:after,
+q:before,
+q:after {
   content: "";
   content: none;
 }
@@ -64,7 +147,9 @@ input::-moz-focus-inner {
   padding: 0;
 }
 
-input, select, textarea {
+input,
+select,
+textarea {
   -moz-appearance: none;
   -webkit-appearance: none;
   -ms-appearance: none;
@@ -76,7 +161,9 @@ html {
   box-sizing: border-box;
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
 
@@ -84,7 +171,9 @@ body {
   background: #252122;
   background-image: url("../sass/images/bg02.png");
 }
-body.is-preload *, body.is-preload *:before, body.is-preload *:after {
+body.is-preload *,
+body.is-preload *:before,
+body.is-preload *:after {
   -moz-animation: none !important;
   -webkit-animation: none !important;
   -ms-animation: none !important;
@@ -95,7 +184,10 @@ body.is-preload *, body.is-preload *:before, body.is-preload *:after {
   transition: none !important;
 }
 
-body, input, textarea, select {
+body,
+input,
+textarea,
+select {
   font-family: "Source Sans Pro";
   font-weight: 300;
   color: #5d5d5d;
@@ -103,12 +195,14 @@ body, input, textarea, select {
   line-height: 1.75em;
 }
 
-strong, b {
+strong,
+b {
   color: #252122;
   font-weight: 400;
 }
 
-i, em {
+i,
+em {
   font-style: italic;
 }
 
@@ -130,12 +224,22 @@ blockquote {
   font-style: italic;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: #252122;
   font-weight: 700;
 }
 
-h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
   color: inherit;
   text-decoration: none;
 }
@@ -167,7 +271,11 @@ hr {
   margin: 2em 0 2em 0;
 }
 
-p, ul, ol, dl, table {
+p,
+ul,
+ol,
+dl,
+table {
   margin-bottom: 2em;
 }
 
@@ -1130,7 +1238,22 @@ form label {
   font-weight: 400;
   margin: 0 0 0.5em 0;
 }
-form input[type=text],
+form input[type=text]:focus {
+  border: 5px solid #d52349;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+form input[type=text] {
+  font-size: 1rem;
+  border-radius: 5px;
+  width: 100%;
+  border: 5px solid #d52349;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: none;
+  background-color: #252122;
+  color: #827a7c;
+}
 form input[type=email],
 form input[type=password],
 form select,
@@ -1145,7 +1268,6 @@ form textarea {
   background: #fff;
   width: 100%;
 }
-form input[type=text]:focus,
 form input[type=email]:focus,
 form input[type=password]:focus,
 form select:focus,
@@ -1195,10 +1317,13 @@ table thead {
 }
 
 /* Section/Article */
-section, article {
+section,
+article {
   margin-bottom: 2.5em;
 }
-section > :last-child, section:last-child, article > :last-child, article:last-child {
+section > :last-child, section:last-child,
+article > :last-child,
+article:last-child {
   margin-bottom: 0;
 }
 
@@ -1713,7 +1838,8 @@ ul.social li a.fa-google-plus:hover {
   margin-left: -1px;
   list-style: none;
 }
-.dropotron a, .dropotron span {
+.dropotron a,
+.dropotron span {
   color: #aaa;
   text-decoration: none;
   -moz-transition: color .25s ease-in-out;
@@ -1724,7 +1850,8 @@ ul.social li a.fa-google-plus:hover {
 .dropotron li {
   padding: 0.25em 0 0.25em 0;
 }
-.dropotron li:hover > a, .dropotron li:hover > span {
+.dropotron li:hover > a,
+.dropotron li:hover > span {
   color: #fff;
 }
 .dropotron.level-0 {
@@ -1774,18 +1901,10 @@ ul.social li a.fa-google-plus:hover {
   font-size: 1.5em;
 }
 
-/* btnToMoveBetweenPages */
-#btnToMoveBetweenPages {
-    text-align: center;
-    overflow: hidden;
-    margin: 0 auto;
-    max-width: 100%;
-    min-width: 12em;
-}
 /* Intro */
 #intro {
-    text-align: center;
-    overflow: hidden;
+  text-align: center;
+  overflow: hidden;
 }
 #intro section {
   margin: 3em 0;
@@ -1871,10 +1990,22 @@ ul.social li a.fa-google-plus:hover {
 #footer a {
   color: #c5c4c4;
 }
-#footer h2, #footer h3, #footer h4, #footer h5, #footer h6, #footer strong, #footer b {
+#footer h2,
+#footer h3,
+#footer h4,
+#footer h5,
+#footer h6,
+#footer strong,
+#footer b {
   color: #fff;
 }
-#footer h2 a, #footer h3 a, #footer h4 a, #footer h5 a, #footer h6 a, #footer strong a, #footer b a {
+#footer h2 a,
+#footer h3 a,
+#footer h4 a,
+#footer h5 a,
+#footer h6 a,
+#footer strong a,
+#footer b a {
   color: inherit;
 }
 #footer ul.contact li, #footer ul.dates li, #footer ul.divided li {
@@ -1905,14 +2036,20 @@ ul.social li a.fa-google-plus:hover {
 /* XLarge */
 @media screen and (max-width: 1680px) {
   /* Basic */
-  body, input, textarea, select {
+  body,
+input,
+textarea,
+select {
     font-size: 12pt;
   }
 }
 /* Large */
 @media screen and (max-width: 1280px) {
   /* Basic */
-  body, input, textarea, select {
+  body,
+input,
+textarea,
+select {
     font-size: 11pt;
   }
 
@@ -1979,13 +2116,15 @@ ul.social li a.fa-google-plus:hover {
   }
 }
 /* Medium */
-#navPanel, #titleBar {
+#navPanel,
+#titleBar {
   display: none;
 }
 
 @media screen and (max-width: 980px) {
   /* Basic */
-  html, body {
+  html,
+body {
     overflow-x: hidden;
   }
 
@@ -2199,11 +2338,18 @@ ul.social li a.fa-google-plus:hover {
 /* Small */
 @media screen and (max-width: 736px) {
   /* Basic */
-  body, input, textarea, select {
+  body,
+input,
+textarea,
+select {
     font-size: 11pt;
   }
 
-  h2, h3, h4, h5, h6 {
+  h2,
+h3,
+h4,
+h5,
+h6 {
     font-size: 1.25em;
   }
 
@@ -2230,7 +2376,8 @@ button.large,
   }
 
   /* Section/Article */
-  section, article {
+  section,
+article {
     margin-bottom: 20px;
   }
 

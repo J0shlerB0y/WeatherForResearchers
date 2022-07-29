@@ -4,6 +4,7 @@ namespace WebApplication1.Models
 {
     public class CityAndCountry
     {
+        [Key]
         public string CityTitle_ru { get; set; } = "";
         public string CountryTitle_ru { get; set; } = "";
         public string CountryTitle_en { get; set; } = "";

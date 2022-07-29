@@ -2,23 +2,25 @@
 {
     public class PageViewModel
     {
-        public int pageCount { get; private set;}
-        public int pageNumber { get; private set; }
+        public int citiesCount { get; private set;}
+        public int page { get; private set; }
+        public int pageSize { get; private set; }
 
         public PageViewModel(int count, int page, int pageSize)
         {
-            pageCount = count/ pageSize;
-            pageNumber = page;
+            this.pageSize = pageSize;
+            citiesCount = count;
+            this.page = page;
         }
         public bool HasPreviousPage()
         {
-            if(pageNumber-1 <= 0)
+            if(page <= 0)
                 return false;
             return true;
         }
         public bool HasNextPage()
         {
-            if (pageNumber+1 >= pageCount)
+            if (page * pageSize >= citiesCount)
                 return false;
             return true;
         }
