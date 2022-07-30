@@ -12,7 +12,7 @@ namespace WebApplication1.Controllers
     {
         private ApplicationContext db;
         public int count;
-        public const int pageSize = 18;
+        public const int pageSize = 12;
         public List<CityAndCountry> pageCitiesAndCountries;
         public IQueryable<CityAndCountry> citiesAndCountries;
         public List<WeatherModel> WeatherForView;
@@ -24,30 +24,56 @@ namespace WebApplication1.Controllers
             db = ContextDb;
         }
 
-        public async Task<IActionResult> Index(int page = 0, FilterViewModel filter = null)
+        public async Task<IActionResult> Index(int page = 0,
+            FilterViewModel filter = null,
+            SortingEnum sortingState = SortingEnum.CityAsc)
         {
+
             citiesAndCountries = db._cityandcountry;
-            if (filter.City != null)
+            //filtration
+            if (!String.IsNullOrEmpty(filter.City))
             {
                 citiesAndCountries = citiesAndCountries.Where(c => filter.City == c.CityTitle_ru);
             }
-            if (filter.Country != null)
+            if (!String.IsNullOrEmpty(filter.Country))
             {
                 citiesAndCountries = citiesAndCountries.Where(c => filter.Country == c.CountryTitle_ru || filter.Country == c.CountryTitle_en);
             }
-            WeatherForView = new List<WeatherModel>();
 
+            //sorting
+            switch (sortingState)
+            {
+                case SortingEnum.CityAsc:
+                    citiesAndCountries = citiesAndCountries.OrderBy(s => s.CityTitle_ru);
+                    break;
+                case SortingEnum.CountryAsc:
+                    citiesAndCountries = citiesAndCountries.OrderBy(s => s.CountryTitle_ru);
+                    break;
+                case SortingEnum.CityDesc:
+                    citiesAndCountries = citiesAndCountries.OrderByDescending(s => s.CityTitle_ru);
+                    break;
+                case SortingEnum.CountryDesc:
+                    citiesAndCountries = citiesAndCountries.OrderByDescending(s => s.CountryTitle_ru);
+                    break;
+            }
+
+            //building items for Page
             count = await citiesAndCountries.CountAsync();
             pageCitiesAndCountries = await citiesAndCountries.Skip(page * pageSize).Take(pageSize).ToListAsync();
-            //нужно связать погоду с названиями для вьюшки
+
+            //finding weather
+            WeatherForView = new List<WeatherModel>();
             foreach (CityAndCountry cityAndCountry in pageCitiesAndCountries)
             {
                 WeatherForView.Add(GetWeather(cityAndCountry.CityTitle_ru));
             }
+
+            //building view Model
             ForIndexViewModel forIndexViewModel = new ForIndexViewModel(
                 pageCitiesAndCountries,
                 new PageViewModel(count, page, pageSize),
-                WeatherForView
+                WeatherForView,
+                sortingState
             )
             {
                 filter = new FilterViewModel() { 
@@ -90,7 +116,7 @@ namespace WebApplication1.Controllers
             JObject jsonWeather = JObject.Parse(json.GetValue("weather").FirstOrDefault().ToString());
             outputWeather.weather = jsonWeather.GetValue("description").ToString();
 
-            outputWeather.icon = jsonWeather.GetValue("icon").ToString();
+            outputWeather.icon = $"https://openweathermap.org/img/wn/{jsonWeather.GetValue("icon").ToString()}@2x.png";
 
             JObject jsonputMain = JObject.Parse(json.GetValue("main").ToString());
             outputWeather.temp = jsonputMain.GetValue("temp").ToString();

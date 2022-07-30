@@ -275,10 +275,12 @@ h3 {
 
 a {
 	color: #d52349;
-	text-decoration: underline;
+	font-size: 1.5em;
+	font-style: normal;
+	text-decoration: none;
 
 	&:hover {
-		text-decoration: none;
+		text-decoration: underline;
 	}
 }
 
@@ -299,6 +301,10 @@ ol,
 dl,
 table {
 	margin-bottom: 2em;
+}
+
+p {
+	font-size: 1rem;
 }
 
 /* Container */
@@ -496,7 +502,7 @@ footer {
 /* Box */
 
 .box {
-	background: #ffffff;
+	background: #CCE8F4;
 	border-bottom: solid 1px #ccc;
 	padding: 2.75em 1.75em 2.75em 1.75em;
 

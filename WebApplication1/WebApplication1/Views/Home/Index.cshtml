@@ -24,6 +24,45 @@
             content: "\f053";
         }
 </style>
+
+					<!-- Intro -->
+						<section id="intro" class="container">
+							<div class="row">
+								<div class="col-4 col-12-medium">
+									<section class="first">
+										<i class="icon solid featured fa-cog"></i>
+										<header>
+											<h2>Ipsum consequat</h2>
+										</header>
+										<p>Nisl amet dolor sit ipsum veroeros sed blandit consequat veroeros et magna tempus.</p>
+									</section>
+								</div>
+								<div class="col-4 col-12-medium">
+									<section class="middle">
+										<i class="icon solid featured alt fa-bolt"></i>
+										<header>
+											<h2>Magna etiam dolor</h2>
+										</header>
+										<p>Nisl amet dolor sit ipsum veroeros sed blandit consequat veroeros et magna tempus.</p>
+									</section>
+								</div>
+								<div class="col-4 col-12-medium">
+									<section class="last">
+										<i class="icon solid featured alt2 fa-star"></i>
+										<header>
+											<h2>Tempus adipiscing</h2>
+										</header>
+										<p>Nisl amet dolor sit ipsum veroeros sed blandit consequat veroeros et magna tempus.</p>
+									</section>
+								</div>
+							</div>
+							<footer>
+								<ul class="actions">
+									<li><a href="#" class="button large">Get Started</a></li>
+									<li><a href="#" class="button alt large">Learn More</a></li>
+								</ul>
+							</footer>
+						</section>
 			<!-- Main -->
 				<section id="main">
 					<div class="container">
@@ -31,6 +70,9 @@
 							<div class="col-12">
 								<!-- Portfolio -->
 									<section>
+										<header class="major">
+											<h2>My Portfolio</h2>
+										</header>
 										<form method="get">
 										<header>
 										<h3>City: </h3>
@@ -46,8 +88,33 @@
 										</footer>
 										</form>
 										<header class="major">
-											<h2>My Portfolio</h2>
+											<h2>Sort by</h2>
 										</header>
+										<a 
+										asp-action="Index"
+										asp-route-sortingState="@SortingEnum.CityAsc"
+										asp-route-city="@(Model.filter.City)"
+										asp-route-country="@(Model.filter.Country)"
+										>City Ascending&nbsp&nbsp&nbsp&nbsp</a>
+										<a 
+										asp-action="Index"
+										asp-route-sortingState="@SortingEnum.CountryAsc"
+										asp-route-city="@(Model.filter.City)"
+										asp-route-country="@(Model.filter.Country)"
+										>Country Ascending&nbsp&nbsp&nbsp&nbsp</a>
+										<a 
+										asp-action="Index"
+										asp-route-sortingState="@SortingEnum.CityDesc"
+										asp-route-city="@(Model.filter.City)"
+										asp-route-country="@(Model.filter.Country)"
+										>City Descending&nbsp&nbsp&nbsp&nbsp</a>
+										<a 
+										asp-action="Index"
+										asp-route-sortingState="@SortingEnum.CountryDesc"
+										asp-route-city="@(Model.filter.City)"
+										asp-route-country="@(Model.filter.Country)"
+										>Country Descending</a>
+										<hr> 
 										<!-- First -->
 										<div class="row">
 
@@ -60,6 +127,7 @@
 														<h2>@Model.cityAndCountry[i].CityTitle_ru</h2>
 														<h3>@Model.cityAndCountry[i].CountryTitle_ru/@Model.cityAndCountry[i].CountryTitle_en</h3>
 													
+														<img src = "@Model.weather[i].icon">
 														<p>weather - @Model.weather[i].weather;</p>
 														<p>temp - @Model.weather[i].temp C;</p> 
 														<p>temp feels like - @Model.weather[i].temp_feels_like C;</p>
@@ -89,6 +157,7 @@
 										asp-route-page="@(Model.pageViewModel.page-1)"
 										asp-route-city="@(Model.filter.City)"
 										asp-route-country="@(Model.filter.Country)"
+										asp-route-sortingState="@(Model.sortingState)"
 									><i class="glyphicon glyphicon-chevron-left"></i>
 									Backward  </a></li>
 							}
@@ -98,6 +167,7 @@
 										asp-route-page="@(Model.pageViewModel.page+1)"
 										asp-route-city="@(Model.filter.City)"
 										asp-route-country="@(Model.filter.Country)"
+										asp-route-sortingState="@(Model.sortingState)"
 									>  Forward
 									<i class="glyphicon glyphicon-chevron-right"></i>
 									</a></li>
