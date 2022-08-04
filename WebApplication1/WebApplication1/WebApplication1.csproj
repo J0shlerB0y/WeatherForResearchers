@@ -34,4 +34,9 @@
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\Новая папка\" />
+    <Folder Include="Views\Новая папка\" />
+  </ItemGroup>
+
 </Project>

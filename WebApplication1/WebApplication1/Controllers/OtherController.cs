@@ -8,28 +8,53 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
-    public class HomeController : Controller
+
+    public class OtherController : Controller
     {
-        private ApplicationContext db;
         private int count;
         private const int pageSize = 12;
         private List<CityAndCountry> pageCitiesAndCountries;
         private IQueryable<CityAndCountry> citiesAndCountries;
         private List<WeatherModel> WeatherForView;
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger, ApplicationContext ContextDb)
+        public OtherController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            db = ContextDb;
         }
-
-        public async Task<IActionResult> Index(int page = 0,
+        public async Task<IActionResult> OwnCabinet(int page = 0,
             FilterViewModel filter = null,
             SortingEnum sortingState = SortingEnum.CityAsc)
         {
+            citiesAndCountries = Enumerable.Empty<CityAndCountry>().AsQueryable();
+            //fetching and recycling cookies
+            if (HttpContext.Request.Cookies.ContainsKey("id"))
+            {
+                int CookieId = Convert.ToInt32(HttpContext.Request.Cookies["id"]);
+                for (int i = 1; i <= CookieId; i++)
+                {
+                    if (HttpContext.Request.Cookies.ContainsKey($"city{i}") && HttpContext.Request.Cookies.ContainsKey($"country{i}"))
+                    {
+                        String[] cookieCity = HttpContext.Request.Cookies[$"city{i}"].Split('-');
+                        byte[] bytesCity = new byte[cookieCity.Length];
+                        for (int j = 0; j < cookieCity.Length; j++)
+                        {
+                            bytesCity[j] = Convert.ToByte(cookieCity[j]);
+                        }
+                        String[] cookieCountry = HttpContext.Request.Cookies[$"country{i}"].Split('-');
+                        byte[] bytesCountry = new byte[cookieCountry.Length];
+                        for (int j = 0; j < cookieCountry.Length; j++)
+                        {
+                            bytesCountry[j] = Convert.ToByte(cookieCountry[j]);
+                        }
+                        _logger.LogInformation($"{Encoding.UTF8.GetString(bytesCity)} {Encoding.UTF8.GetString(bytesCountry)}");
+                        citiesAndCountries = citiesAndCountries.Append<CityAndCountry>(new CityAndCountry (Encoding.UTF8.GetString(bytesCity), Encoding.UTF8.GetString(bytesCountry).Split('/')[0], Encoding.UTF8.GetString(bytesCountry).Split('/')[1]));
+                    }
+                }
+            }
+            else
+            {
 
-            citiesAndCountries = db._cityandcountry;
+            }
             //filtration
             if (!String.IsNullOrEmpty(filter.City))
             {
@@ -58,8 +83,8 @@ namespace WebApplication1.Controllers
             }
 
             //building items for Page
-            count = await citiesAndCountries.CountAsync();
-            pageCitiesAndCountries = await citiesAndCountries.Skip(page * pageSize).Take(pageSize).ToListAsync();
+            count = citiesAndCountries.Count();
+            pageCitiesAndCountries = citiesAndCountries.Skip(page * pageSize).Take(pageSize).ToList();
 
             //finding weather
             WeatherForView = new List<WeatherModel>();
@@ -69,29 +94,20 @@ namespace WebApplication1.Controllers
             }
 
             //building view Model
-            ForIndexViewModel forIndexViewModel = new ForIndexViewModel(
+            ForOwnCabinetViewModel forOwnCabinetViewModel = new ForOwnCabinetViewModel(
                 pageCitiesAndCountries,
                 new PageViewModel(count, page, pageSize),
                 WeatherForView,
                 sortingState
             )
             {
-                filter = new FilterViewModel() { 
+                filter = new FilterViewModel()
+                {
                     City = filter.City,
                     Country = filter.Country
                 }
             };
-            return View(forIndexViewModel);
-        }
-            public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(forOwnCabinetViewModel);
         }
         public WeatherModel GetWeather(string cityToFindWeather)
         {

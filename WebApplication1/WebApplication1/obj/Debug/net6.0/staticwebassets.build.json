@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "h6pWFvv9i6ULej3+nz3x4KjBRhI8ZvEYApgkni9V/Aw=",
+  "Hash": "RJPevcy1ocpSHbuXZJ+dR0vWOqUP9RCtxIlvjMcdItM=",
   "Source": "WebApplication1",
   "BasePath": "_content/WebApplication1",
   "Mode": "Default",
@@ -1630,6 +1630,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\ckeditor5-build-classic\\translations\\zh-cn.js"
+    },
+    {
+      "Identity": "C:\\Users\\artem\\OneDrive\\Документы\\GitHub\\WeatherForResearchers\\WebApplication1\\WebApplication1\\wwwroot\\js\\Cookies.js",
+      "SourceId": "WebApplication1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\artem\\OneDrive\\Документы\\GitHub\\WeatherForResearchers\\WebApplication1\\WebApplication1\\wwwroot\\",
+      "BasePath": "_content/WebApplication1",
+      "RelativePath": "js/Cookies.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Cookies.js"
     },
     {
       "Identity": "C:\\Users\\artem\\OneDrive\\Документы\\GitHub\\WeatherForResearchers\\WebApplication1\\WebApplication1\\wwwroot\\js\\jquery.dropotron.min.js",

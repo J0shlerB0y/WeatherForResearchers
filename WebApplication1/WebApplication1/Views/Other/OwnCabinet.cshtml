@@ -1,7 +1,7 @@
-﻿@using WebApplication1.Models
-@model ForIndexViewModel
+@using WebApplication1.Models
+@model ForOwnCabinetViewModel
 <style>
-	@@font-face {
+    @@font-face {
 		font-family: 'FontAwesome';
 		src: url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2') format('woff2'),
 			url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff') format('woff'),
@@ -27,45 +27,6 @@
 		content: "\f053";
 	}
 </style>
-
-<!-- Intro -->
-<section id="intro" class="container">
-	<div class="row">
-		<div class="col-4 col-12-medium">
-			<section class="first">
-				<i class="icon solid featured fa-cog"></i>
-				<header>
-					<h2>Ipsum consequat</h2>
-				</header>
-				<p>Nisl amet dolor sit ipsum veroeros sed blandit consequat veroeros et magna tempus.</p>
-			</section>
-		</div>
-		<div class="col-4 col-12-medium">
-			<section class="middle">
-				<i class="icon solid featured alt fa-bolt"></i>
-				<header>
-					<h2>Magna etiam dolor</h2>
-				</header>
-				<p>Nisl amet dolor sit ipsum veroeros sed blandit consequat veroeros et magna tempus.</p>
-			</section>
-		</div>
-		<div class="col-4 col-12-medium">
-			<section class="last">
-				<i class="icon solid featured alt2 fa-star"></i>
-				<header>
-					<h2>Tempus adipiscing</h2>
-				</header>
-				<p>Nisl amet dolor sit ipsum veroeros sed blandit consequat veroeros et magna tempus.</p>
-			</section>
-		</div>
-	</div>
-	<footer>
-		<ul class="actions">
-			<li><a href="#" class="button large">Get Started</a></li>
-			<li><a href="#" class="button alt large">Learn More</a></li>
-		</ul>
-	</footer>
-</section>
 <!-- Main -->
 <section id="main">
 	<div class="container">
@@ -74,7 +35,7 @@
 				<!-- Portfolio -->
 				<section>
 					<header class="major">
-						<h2>My Portfolio</h2>
+						<h2>Your Weather</h2>
 					</header>
 					<form method="get">
 						<header>
@@ -87,23 +48,23 @@
 						</header>
 						<footer>
 							<ul class="actions">
-								<input type="submit" value="Фильтр" class="button alt" />
+								<input type="submit" value="Filter" class="button alt" />
 							</ul>
 						</footer>
 					</form>
 					<header class="major">
 						<h2>Sort by</h2>
 					</header>
-					<a asp-action="Index" asp-route-sortingState="@SortingEnum.CityAsc"
+					<a asp-action="OwnCabinet" asp-route-sortingState="@SortingEnum.CityAsc"
 						asp-route-city="@(Model.filter.City)" asp-route-country="@(Model.filter.Country)">City
 						Ascending&nbsp&nbsp&nbsp&nbsp</a>
-					<a asp-action="Index" asp-route-sortingState="@SortingEnum.CountryAsc"
+					<a asp-action="OwnCabinet" asp-route-sortingState="@SortingEnum.CountryAsc"
 						asp-route-city="@(Model.filter.City)" asp-route-country="@(Model.filter.Country)">Country
 						Ascending&nbsp&nbsp&nbsp&nbsp</a>
-					<a asp-action="Index" asp-route-sortingState="@SortingEnum.CityDesc"
+					<a asp-action="OwnCabinet" asp-route-sortingState="@SortingEnum.CityDesc"
 						asp-route-city="@(Model.filter.City)" asp-route-country="@(Model.filter.Country)">City
 						Descending&nbsp&nbsp&nbsp&nbsp</a>
-					<a asp-action="Index" asp-route-sortingState="@SortingEnum.CountryDesc"
+					<a asp-action="OwnCabinet" asp-route-sortingState="@SortingEnum.CountryDesc"
 						asp-route-city="@(Model.filter.City)" asp-route-country="@(Model.filter.Country)">Country
 						Descending</a>
 					<hr>
@@ -119,7 +80,6 @@
 
 										<h2 id="City-@i">@Model.cityAndCountry[i].CityTitle_ru</h2>
 										<h3 id="Country-@i">@Model.cityAndCountry[i].CountryTitle_ru/@Model.cityAndCountry[i].CountryTitle_en</h3>
-
 										<img src="@Model.weather[i].icon">
 										<p>weather - @Model.weather[i].weather;</p>
 										<p>temp - @Model.weather[i].temp C;</p>
@@ -129,11 +89,10 @@
 										<p>pressure - @Model.weather[i].pressure Pa;</p>
 										<p>humidity - @Model.weather[i].humidity %;</p>
 										<p>wind speed - @Model.weather[i].wind_speed m/s</p>
-
 									</header>
 									<footer>
 										<ul class="actions">
-											<li><button class="button alt" onclick="sub('@i')">Subscribe</button>
+											<li><button class="button alt" onclick="deleteCookie('@i')">Delete</button>
 											</li>
 										</ul>
 									</footer>
@@ -146,7 +105,7 @@
 						<ul class="actions">
 							@if (Model.pageViewModel.HasPreviousPage())
 							{
-								<li><a class="button alt large" id="btnToMoveBetweenPages" asp-action="Index"
+								<li><a class="button alt large" id="btnToMoveBetweenPages" asp-action="OwnCabinet"
 									asp-route-page="@(Model.pageViewModel.page-1)" asp-route-city="@(Model.filter.City)"
 									asp-route-country="@(Model.filter.Country)"
 									asp-route-sortingState="@(Model.sortingState)"><i
@@ -155,7 +114,7 @@
 							}
 							@if (Model.pageViewModel.HasNextPage())
 							{
-								<li><a class="button large" id="btnToMoveBetweenPages" asp-action="Index"
+								<li><a class="button large" id="btnToMoveBetweenPages" asp-action="OwnCabinet"
 									asp-route-page="@(Model.pageViewModel.page+1)" asp-route-city="@(Model.filter.City)"
 									asp-route-country="@(Model.filter.Country)"
 									asp-route-sortingState="@(Model.sortingState)"> Forward

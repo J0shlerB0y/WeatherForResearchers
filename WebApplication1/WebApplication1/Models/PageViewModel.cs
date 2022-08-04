@@ -20,7 +20,7 @@
         }
         public bool HasNextPage()
         {
-            if (page * pageSize >= citiesCount)
+            if ((page + 1) * pageSize >= citiesCount)
                 return false;
             return true;
         }
