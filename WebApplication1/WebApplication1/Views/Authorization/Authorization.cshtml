@@ -1,0 +1,79 @@
+@using WebApplication1.Models
+@model ForAuthorizationViewModel
+<style>
+	@@font-face {
+		font-family: 'FontAwesome';
+		src: url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2') format('woff2'), url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff') format('woff'), url('https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/fonts/fontawesome-webfont.ttf') format('truetype');
+		font-weight: normal;
+		font-style: normal
+	}
+
+	.glyphicon {
+		display: inline-block;
+		font: normal normal normal 14px/1 FontAwesome;
+		font-size: inherit;
+		text-rendering: auto;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale
+	}
+
+	.glyphicon-chevron-right:before {
+		content: "\f054";
+	}
+
+	.glyphicon-chevron-left:before {
+		content: "\f053";
+	}
+</style>
+
+<!-- Main -->
+<section id="main">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<!-- Loging -->
+				<section>
+					<header class="major">
+						<h2>Authorization</h2>
+					</header>
+					<form method="get">
+						<header>
+							<h3>Login: </h3>
+							<input type="text" name="LoginToEnter" class="form-control" />
+							<br />
+							<h3>Passowrd: </h3>
+							<input type="text" name="PasswordToEnter" class="form-control" />
+						</header>
+						<footer>
+							<ul class="actions">
+								<input type="submit" value="Log in" class="button alt" />
+							</ul>
+						</footer>
+					</form>
+				</section>
+				<!-- Creating account -->
+				<section>
+					<header class="major">
+						<h2>Registration</h2>
+					</header>
+					<form method="get">
+						<header>
+							<h3>Login: </h3>
+							<input type="text" name="LoginToRegistr" class="form-control" />
+							<br />
+							<h3>Passowrd: </h3>
+							<input type="text" name="PasswordToRegistr" class="form-control" />
+						</header>
+						<footer>
+							<ul class="actions">
+								<input type="submit" value="Create account" class="button alt" />
+							</ul>
+						</footer>
+					</form>
+				</section>
+			</div>
+			<div class="col-12">
+			</div>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,137 @@
+@using WebApplication1.Models
+@model ForOwnCabinetViewModel
+<style>
+    @@font-face {
+		font-family: 'FontAwesome';
+		src: url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2') format('woff2'),
+			url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff') format('woff'),
+			url('https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/fonts/fontawesome-webfont.ttf') format('truetype');
+		font-weight: normal;
+		font-style: normal
+	}
+
+	.glyphicon {
+		display: inline-block;
+		font: normal normal normal 14px/1 FontAwesome;
+		font-size: inherit;
+		text-rendering: auto;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale
+	}
+
+	.glyphicon-chevron-right:before {
+		content: "\f054";
+	}
+
+	.glyphicon-chevron-left:before {
+		content: "\f053";
+	}
+</style>
+<!-- Main -->
+<section id="main">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<!-- Portfolio -->
+				<section>
+					<header class="major">
+						<h2>Filtration</h2>
+					</header>
+					<form method="get">
+						<header>
+							<h3>City: </h3>
+							<input type="text" name="filter.City" value="@Model.filter.City" class="form-control" />
+							<br />
+							<h3>Country: </h3>
+							<input type="text" name="filter.Country" value="@Model.filter.Country"
+								class="form-control" />
+						</header>
+						<footer>
+							<ul class="actions">
+								<input type="submit" value="Filtrate" class="button alt" />
+							</ul>
+						</footer>
+					</form>
+					<header class="major">
+						<h2>Sort by</h2>
+					</header>
+					<a asp-action="OwnCabinet" asp-route-sortingState="@SortingEnum.CityAsc"
+						asp-route-city="@(Model.filter.City)" asp-route-country="@(Model.filter.Country)">City
+						Ascending&nbsp&nbsp&nbsp&nbsp</a>
+					<a asp-action="OwnCabinet" asp-route-sortingState="@SortingEnum.CountryAsc"
+						asp-route-city="@(Model.filter.City)" asp-route-country="@(Model.filter.Country)">Country
+						Ascending&nbsp&nbsp&nbsp&nbsp</a>
+					<a asp-action="OwnCabinet" asp-route-sortingState="@SortingEnum.CityDesc"
+						asp-route-city="@(Model.filter.City)" asp-route-country="@(Model.filter.Country)">City
+						Descending&nbsp&nbsp&nbsp&nbsp</a>
+					<a asp-action="OwnCabinet" asp-route-sortingState="@SortingEnum.CountryDesc"
+						asp-route-city="@(Model.filter.City)" asp-route-country="@(Model.filter.Country)">Country
+						Descending</a>
+					<hr>
+					<!-- First -->
+					<div class="row">
+
+						@for (int i = 0; i < Model.cityAndCountry.Count(); i++)
+						{
+							<div class="col-4 col-6-medium col-12-small">
+								<section class="box">
+									<a href="#" class="image featured"><img src="images/pic02.jpg" alt="" /></a>
+									<header>
+
+										<h2 id="City-@i">@Model.cityAndCountry[i].CityTitle_en</h2>
+										<h3 id="Country-@i">@Model.cityAndCountry[i].CountryTitle_en</h3>
+										<img src="@Model.weather[i].icon">
+										<p>weather - @Model.weather[i].weather;</p>
+										<p>temp - @Model.weather[i].temp C;</p>
+										<p>temp feels like - @Model.weather[i].temp_feels_like C;</p>
+										<p>temp min - @Model.weather[i].temp_min C;</p>
+										<p>temp max - @Model.weather[i].temp_max C;</p>
+										<p>pressure - @Model.weather[i].pressure Pa;</p>
+										<p>humidity - @Model.weather[i].humidity %;</p>
+										<p>wind speed - @Model.weather[i].wind_speed m/s</p>
+									</header>
+									<footer>
+										<ul class="actions">
+											<li>
+												@for (int j = @Model.cityAndCountry[i].Id; j < @Model.cityAndCountry[i].Id +1; j++)
+												{
+													<button class="button alt" onclick="deleteCookie('@j')">Delete</button>
+												}
+											</li>
+										</ul>
+									</footer>
+								</section>
+							</div>
+						}
+
+					</div>
+					<footer>
+						<ul class="actions">
+							@if (Model.pageViewModel.HasPreviousPage())
+							{
+								<li><a class="button alt large" id="btnToMoveBetweenPages" asp-action="OwnCabinet"
+									asp-route-page="@(Model.pageViewModel.page-1)" asp-route-city="@(Model.filter.City)"
+									asp-route-country="@(Model.filter.Country)"
+									asp-route-sortingState="@(Model.sortingState)"><i
+										class="glyphicon glyphicon-chevron-left"></i>
+										Backward </a></li>
+							}
+							@if (Model.pageViewModel.HasNextPage())
+							{
+								<li><a class="button large" id="btnToMoveBetweenPages" asp-action="OwnCabinet"
+									asp-route-page="@(Model.pageViewModel.page+1)" asp-route-city="@(Model.filter.City)"
+									asp-route-country="@(Model.filter.Country)"
+									asp-route-sortingState="@(Model.sortingState)"> Forward
+										<i class="glyphicon glyphicon-chevron-right"></i>
+									</a></li>
+							}
+						</ul>
+					</footer>
+				</section>
+			</div>
+			<div class="col-12">
+
+			</div>
+		</div>
+	</div>
+</section>
