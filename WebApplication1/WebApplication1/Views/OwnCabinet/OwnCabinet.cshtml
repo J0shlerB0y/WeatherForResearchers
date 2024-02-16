@@ -1,4 +1,4 @@
-@using WebApplication1.Models
+@using WeatherResearcher.Models
 @model ForOwnCabinetViewModel
 <style>
     @@font-face {
@@ -93,9 +93,8 @@
 									<footer>
 										<ul class="actions">
 											<li>
-												@for (int j = @Model.cityAndCountry[i].Id; j < @Model.cityAndCountry[i].Id +1; j++)
-												{
-													<button class="button alt" onclick="deleteCookie('@j')">Delete</button>
+												@{
+													<button class="button alt" onclick="deleteCookie('@Model.cityAndCountry[i].Id')">Delete</button>
 												}
 											</li>
 										</ul>

@@ -145,3 +145,4 @@ C:\Users\artem\OneDrive\Документы\GitHub\WeatherForResearchers\WebAppli
 C:\Users\artem\OneDrive\Документы\GitHub\WeatherForResearchers\WebApplication1\WebApplication1\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.WebApplication1.props
 C:\Users\artem\OneDrive\Документы\GitHub\WeatherForResearchers\WebApplication1\WebApplication1\obj\Debug\net6.0\staticwebassets.pack.json
 C:\Users\artem\OneDrive\Документы\GitHub\WeatherForResearchers\WebApplication1\WebApplication1\obj\Debug\net6.0\refint\WebApplication1.dll
+C:\Users\artem\OneDrive\Документы\GitHub\WeatherForResearchers\WebApplication1\WebApplication1\bin\Debug\net6.0\libman.json

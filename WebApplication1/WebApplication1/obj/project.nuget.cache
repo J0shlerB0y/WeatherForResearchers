@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "YrtNozzcTPckWK6xR4LqTHiwtwXu22NuxORwkZI4v7HSwu4Zqpo4eHLW6UdrF/zUyg1mbGX/oYJxMML87Juuxw==",
+  "dgSpecHash": "pr4W2q8COv0YCThy7T/plRQgb0vtfKCesaUvjLvxy51iLd08TY0orz+xkPjmQ/6MDUGR/YLi3LaEzQ7nb1qizA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\artem\\OneDrive\\Документы\\GitHub\\WeatherForResearchers\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
+  "projectFilePath": "C:\\Users\\artem\\OneDrive\\Документы\\GitHub\\WeatherForResearchers\\WebApplication1\\WebApplication1\\WeatherResearcher.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\artem\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\artem\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.6\\microsoft.aspnetcore.cryptography.internal.6.0.6.nupkg.sha512",

@@ -1,4 +1,4 @@
-﻿@using WebApplication1.Models
+﻿@using WeatherResearcher.Models
 @model ForIndexViewModel
 <style>
 	@@font-face {
@@ -133,11 +133,16 @@
 									</header>
 									<footer>
 										<ul class="actions">
-											<li>
-												@for (int j = @Model.cityAndCountry[i].Id; j < @Model.cityAndCountry[i].Id + 1; j++)
+											<li>@if (Model.isLogedIn)
 												{
-													<button class="button alt" onclick="sub('@j')">Subscribe</button>
+													<a asp-action="Index" asp-route-cityIdToAdd=@(Model.cityAndCountry[i].Id) asp-route-sortingState="@(Model.sortingState)"
+														   asp-route-city="@(Model.filter.City)" asp-route-country="@(Model.filter.Country)" class="button alt">Subscribe</a>
 												}
+												else
+												{
+													<button class="button alt" onclick="sub('@(Model.cityAndCountry[i].Id)')">Subscribe</button>
+												}
+												
 											</li>
 										</ul>
 									</footer>

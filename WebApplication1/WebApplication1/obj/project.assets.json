@@ -2339,9 +2339,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\artem\\OneDrive\\Документы\\GitHub\\WeatherForResearchers\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
-      "projectName": "WebApplication1",
-      "projectPath": "C:\\Users\\artem\\OneDrive\\Документы\\GitHub\\WeatherForResearchers\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
+      "projectUniqueName": "C:\\Users\\artem\\OneDrive\\Документы\\GitHub\\WeatherForResearchers\\WebApplication1\\WebApplication1\\WeatherResearcher.csproj",
+      "projectName": "WeatherResearcher",
+      "projectPath": "C:\\Users\\artem\\OneDrive\\Документы\\GitHub\\WeatherForResearchers\\WebApplication1\\WebApplication1\\WeatherResearcher.csproj",
       "packagesPath": "C:\\Users\\artem\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\artem\\OneDrive\\Документы\\GitHub\\WeatherForResearchers\\WebApplication1\\WebApplication1\\obj\\",
       "projectStyle": "PackageReference",
@@ -2358,7 +2358,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\sdk\\7.0.304\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -2439,7 +2438,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
       }
     }
   }

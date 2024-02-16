@@ -5,11 +5,12 @@ using System.Drawing.Printing;
 using System.Linq;
 using System.Net;
 using System.Text;
-using WebApplication1.Models;
+using WeatherResearcher.Models;
+using WeatherResearcher.Services;
 
-namespace WebApplication1.Controllers
+namespace WeatherResearcher.Controllers
 {
-	public class AuthorizationController : Controller
+    public class AuthorizationController : Controller
 	{
 		private ApplicationContext db;
 		private ForAuthorizationViewModel viewModel;
@@ -29,7 +30,7 @@ namespace WebApplication1.Controllers
 				{
 					cookies.Append("Login", LoginToEnter);
 					cookies.Append("Password", PasswordToEnter);
-					return RedirectToAction("OwnCabinet", "Other");
+					return RedirectToAction("OwnCabinet", "OwnCabinet");
 				}
 			}
 
