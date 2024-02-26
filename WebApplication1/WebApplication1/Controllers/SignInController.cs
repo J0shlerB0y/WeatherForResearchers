@@ -10,13 +10,13 @@ using WeatherResearcher.Services;
 
 namespace WeatherResearcher.Controllers
 {
-    public class AuthorizationController : Controller
+    public class SignInController : Controller
 	{
 		private ApplicationContext db;
 		private ForAuthorizationViewModel viewModel;
-		private readonly ILogger<AuthorizationController> _logger;
+		private readonly ILogger<SignInController> _logger;
 
-		public AuthorizationController(ILogger<AuthorizationController> logger, ApplicationContext ContextDb)
+		public SignInController(ILogger<SignInController> logger, ApplicationContext ContextDb)
 		{
 			_logger = logger;
 			db = ContextDb;
@@ -30,7 +30,7 @@ namespace WeatherResearcher.Controllers
 				{
 					cookies.Append("Login", LoginToEnter);
 					cookies.Append("Password", PasswordToEnter);
-					return RedirectToAction("OwnCabinet", "OwnCabinet");
+					return RedirectToAction("OwnCabinet", "OwnWeather");
 				}
 			}
 

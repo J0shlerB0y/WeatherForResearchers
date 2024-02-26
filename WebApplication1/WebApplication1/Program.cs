@@ -32,7 +32,11 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
-	name: "Authorization",
-	pattern: "{controller=Other}/{action=OwnCabinet}/{id?}");
+	name: "Cabinet",
+	pattern: "{controller=OwnCabinet}/{action=OwnWeather}/{id?}");
+
+app.MapControllerRoute(
+	name: "SignIn",
+	pattern: "{controller=SignIn}/{action=Authorization}/{id?}");
 
 app.Run();

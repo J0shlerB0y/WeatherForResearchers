@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Новая папка\**" />
+    <Content Remove="Views\Новая папка\**" />
+    <EmbeddedResource Remove="Views\Новая папка\**" />
+    <None Remove="Views\Новая папка\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="bundleconfig.json" />
     <Content Remove="compilerconfig.json" />
     <Content Remove="Views\Shared\CssPartial.cshtml" />
@@ -36,7 +43,6 @@
 
   <ItemGroup>
     <Folder Include="Controllers\Новая папка\" />
-    <Folder Include="Views\Новая папка\" />
   </ItemGroup>
 
 </Project>
