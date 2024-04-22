@@ -13,7 +13,7 @@ namespace WeatherResearcher.Controllers
     public class SignInController : Controller
 	{
 		private ApplicationContext db;
-		private ForAuthorizationViewModel viewModel;
+		private ForAuthenticationViewModel viewModel;
 		private readonly ILogger<SignInController> _logger;
 
 		public SignInController(ILogger<SignInController> logger, ApplicationContext ContextDb)
@@ -21,7 +21,7 @@ namespace WeatherResearcher.Controllers
 			_logger = logger;
 			db = ContextDb;
 		}
-		public IActionResult Authorization(string LoginToRegistr = "",string PasswordToRegistr = "", string LoginToEnter = "", string PasswordToEnter = "")
+		public IActionResult Authentication(string LoginToRegistr = "",string PasswordToRegistr = "", string LoginToEnter = "", string PasswordToEnter = "")
 		{
 			var cookies = HttpContext.Response.Cookies;
 			if (LoginToEnter != "" && PasswordToEnter != "")
@@ -30,7 +30,7 @@ namespace WeatherResearcher.Controllers
 				{
 					cookies.Append("Login", LoginToEnter);
 					cookies.Append("Password", PasswordToEnter);
-					return RedirectToAction("OwnCabinet", "OwnWeather");
+					return RedirectToAction("OwnWeather", "OwnCabinet");
 				}
 			}
 

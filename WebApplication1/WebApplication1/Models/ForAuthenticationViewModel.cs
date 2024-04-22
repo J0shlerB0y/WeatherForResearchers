@@ -1,6 +1,6 @@
 ﻿namespace WeatherResearcher.Models
 {
-	public class ForAuthorizationViewModel
+	public class ForAuthenticationViewModel
 	{
 		public string Login { get; set; }
 		public string Password { get; set; }

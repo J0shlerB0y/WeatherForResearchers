@@ -1,5 +1,8 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using WeatherResearcher.MiddlewareTokens;
 using WeatherResearcher.Services;
 
@@ -9,6 +12,21 @@ builder.Services.AddHttpClient();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddSingleton<ApplicationContext>();
 builder.Services.AddControllersWithViews();
+builder.Services.AddAuthorization();
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+	.AddJwtBearer(opt =>
+{
+	opt.TokenValidationParameters = new TokenValidationParameters
+	{
+		ValidateIssuer = true,
+		ValidIssuer = AuthOptions.ISSUER,
+		ValidateAudience = true,
+		ValidAudience = AuthOptions.AUDIENCE,
+		ValidateLifetime = true,
+		ValidateIssuerSigningKey = true,
+		IssuerSigningKey = AuthOptions.KEY
+	};
+});
 
 var app = builder.Build();
 
@@ -25,6 +43,7 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+app.UseMiddleware<AddingCity>();
 app.UseMiddleware<DeletingCity>();
 
 app.MapControllerRoute(
@@ -37,6 +56,13 @@ app.MapControllerRoute(
 
 app.MapControllerRoute(
 	name: "SignIn",
-	pattern: "{controller=SignIn}/{action=Authorization}/{id?}");
+	pattern: "{controller=SignIn}/{action=Authentication}/{id?}");
 
 app.Run();
+
+public struct AuthOptions
+{
+	public const string ISSUER = "Server"; // издатель токена
+	public const string AUDIENCE = "Client"; // потребитель токена
+	public static SymmetricSecurityKey KEY = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("NatureIsOurHome"));   // ключ для шифрации
+}

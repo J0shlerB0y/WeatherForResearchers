@@ -135,8 +135,7 @@
 										<ul class="actions">
 											<li>@if (Model.isLogedIn)
 												{
-													<a asp-action="Index" asp-route-cityIdToAdd=@(Model.cityAndCountry[i].Id) asp-route-sortingState="@(Model.sortingState)"
-														   asp-route-city="@(Model.filter.City)" asp-route-country="@(Model.filter.Country)" class="button alt">Subscribe</a>
+													<button class="button alt" onclick="sendAdd('@(Model.cityAndCountry[i].Id)')">Subscribe</button>
 												}
 												else
 												{

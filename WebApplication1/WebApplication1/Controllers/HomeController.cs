@@ -22,28 +22,13 @@ namespace WeatherResearcher.Controllers
 
 		public async Task<IActionResult> Index(int page = 0,
 			FilterViewModel filter = null,
-			SortingEnum sortingState = SortingEnum.CityAsc,
-			int cityIdToAdd = -1)
+			SortingEnum sortingState = SortingEnum.CityAsc)
 		{
 			//Logining
 			var cookies = HttpContext.Request.Cookies;
 			if (cookies["Login"] != null && cookies["Password"] != null)
 			{
 				isLogedIn = true;
-
-				//Adding City To Acc
-				if (cityIdToAdd > 0)
-				{
-					userCity = new UsersCity()
-					{
-						CityId = cityIdToAdd,
-						UserId =
-							db.users.Where(x => x.Login == cookies["Login"])
-						.Where(x => x.Password == cookies["Password"]).FirstOrDefault().Id
-					};
-					db.userscities.Add(userCity);
-					db.SaveChanges();
-				}
 			}
 			citiesAndCountries = db.citiesAndCountries;
 			
