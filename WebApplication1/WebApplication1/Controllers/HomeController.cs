@@ -26,7 +26,7 @@ namespace WeatherResearcher.Controllers
 		{
 			//Logining
 			var cookies = HttpContext.Request.Cookies;
-			if (cookies["Login"] != null && cookies["Password"] != null)
+			if (cookies["Login"] != null)
 			{
 				isLogedIn = true;
 			}

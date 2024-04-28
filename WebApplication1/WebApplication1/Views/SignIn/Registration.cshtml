@@ -1,5 +1,4 @@
-
-<style>
+﻿<style>
 	@@font-face {
 		font-family: 'FontAwesome';
 		src: url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2') format('woff2'), url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff') format('woff'), url('https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/fonts/fontawesome-webfont.ttf') format('truetype');
@@ -30,28 +29,22 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
+				<!-- Creating account -->
 				<section>
 					<header class="major">
-						<!-- Registration -->
-						<h1><a asp-action="Registration" asp-controller="SignIn">Registration</a></h1>
-					</header>
-				</section>
-				<!-- Loging -->
-				<section>
-					<header class="major">
-						<h2>Authorization</h2>
+						<h2>Registration</h2>
 					</header>
 					<form method="get">
 						<header>
 							<h3>Login: </h3>
-							<input type="text" name="LoginToEnter" class="form-control" />
+							<input type="text" name="LoginToRegistr" class="form-control" />
 							<br />
 							<h3>Passowrd: </h3>
-							<input type="text" name="PasswordToEnter" class="form-control" />
+							<input type="text" name="PasswordToRegistr" class="form-control" />
 						</header>
 						<footer>
 							<ul class="actions">
-								<input type="submit" value="Log in" class="button alt" />
+								<input type="submit" value="Create account" class="button alt" />
 							</ul>
 						</footer>
 					</form>

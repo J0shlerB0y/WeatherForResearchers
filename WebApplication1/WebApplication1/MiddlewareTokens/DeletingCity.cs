@@ -22,10 +22,19 @@ namespace WeatherResearcher.MiddlewareTokens
 		{
 			if (context.Request.Path.Value.ToString() == "/api/delete/user")
 			{
-				CityId cityId = await context.Request.ReadFromJsonAsync<CityId>();
-				UsersCity usersCityToDelete = db.userscities.FirstOrDefault(x => x.CityId == cityId.Id);
-				db.userscities.Remove(usersCityToDelete);
-				db.SaveChanges();
+				var cookies = context.Request.Cookies;
+				CityId cityId = await context.Request.ReadFromJsonAsync<CityId>(); 
+				UsersCity usersCityToDelete = db.userscities.Where(
+					z => z.UserId == db.users
+						.FirstOrDefault(x => x.Login == cookies["Login"]).Id
+					).FirstOrDefault(
+					x => x.CityId == cityId.Id
+					);
+				if (usersCityToDelete != null)
+				{
+					db.userscities.Remove(usersCityToDelete);
+					db.SaveChanges();
+				}
 			}
 			await next.Invoke(context);
 		}

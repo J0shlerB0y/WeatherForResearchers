@@ -25,13 +25,11 @@ namespace WeatherResearcher.Controllers
 
 			var cookies = HttpContext.Request.Cookies;
 
-			if (cookies["Login"] != null && cookies["Password"] != null)
+			if (cookies["Login"] != null)
 			{
 				citiesAndCountries = db.userscities.Join(
 					db.users.Where(
-						(x)=>
-						(x.Password == cookies["Password"]) && 
-						(x.Login == cookies["Login"])
+						(x)=> x.Login == cookies["Login"]
 						),
 					x => x.UserId,
 					y => y.Id,
@@ -47,7 +45,7 @@ namespace WeatherResearcher.Controllers
 			{
 				foreach (var cooke in cookies.ToList())
 				{
-					if (cooke.Key != "Login" && cooke.Key != "Password")
+					if (cooke.Key != "Login")
 					{
 						var tttt = cooke.Value;
 						var yyyy = db.citiesAndCountries.Where(x => x.Id.ToString() == cooke.Value).FirstOrDefault();

@@ -24,15 +24,14 @@ namespace WeatherResearcher.MiddlewareTokens
 			if (context.Request.Path.Value.ToString() == ("/api/add/user"))
 			{
 				var cookies = context.Request.Cookies;
-				if (cookies["Login"] != null && cookies["Password"] != null)
+				if (cookies["Login"] != null)
 				{
 					CityId cityId = await context.Request.ReadFromJsonAsync<CityId>();
 					UsersCity userCity = new UsersCity()
 					{
 						CityId = cityId.Id,
 						UserId =
-								db.users.Where(x => x.Login == cookies["Login"])
-							.Where(x => x.Password == cookies["Password"]).FirstOrDefault().Id
+								db.users.FirstOrDefault(x => x.Login == cookies["Login"]).Id
 					};
 					db.userscities.Add(userCity);
 					db.SaveChanges();

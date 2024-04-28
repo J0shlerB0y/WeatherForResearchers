@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using WeatherResearcher.MiddlewareTokens;
 using WeatherResearcher.Services;
@@ -12,21 +13,6 @@ builder.Services.AddHttpClient();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddSingleton<ApplicationContext>();
 builder.Services.AddControllersWithViews();
-builder.Services.AddAuthorization();
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-	.AddJwtBearer(opt =>
-{
-	opt.TokenValidationParameters = new TokenValidationParameters
-	{
-		ValidateIssuer = true,
-		ValidIssuer = AuthOptions.ISSUER,
-		ValidateAudience = true,
-		ValidAudience = AuthOptions.AUDIENCE,
-		ValidateLifetime = true,
-		ValidateIssuerSigningKey = true,
-		IssuerSigningKey = AuthOptions.KEY
-	};
-});
 
 var app = builder.Build();
 
@@ -40,8 +26,6 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
-app.UseAuthorization();
 
 app.UseMiddleware<AddingCity>();
 app.UseMiddleware<DeletingCity>();

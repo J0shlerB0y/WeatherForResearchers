@@ -13,7 +13,6 @@ namespace WeatherResearcher.Controllers
     public class SignInController : Controller
 	{
 		private ApplicationContext db;
-		private ForAuthenticationViewModel viewModel;
 		private readonly ILogger<SignInController> _logger;
 
 		public SignInController(ILogger<SignInController> logger, ApplicationContext ContextDb)
@@ -21,31 +20,52 @@ namespace WeatherResearcher.Controllers
 			_logger = logger;
 			db = ContextDb;
 		}
-		public IActionResult Authentication(string LoginToRegistr = "",string PasswordToRegistr = "", string LoginToEnter = "", string PasswordToEnter = "")
+		public IActionResult Authentication(string LoginToEnter = "", string PasswordToEnter = "")
 		{
 			var cookies = HttpContext.Response.Cookies;
 			if (LoginToEnter != "" && PasswordToEnter != "")
 			{
-				if (db.users.Where(x => x.Login == LoginToEnter).Where(x => x.Password == PasswordToEnter).FirstOrDefault() != null)
+				if (db.users.Where(x => x.Login == LoginToEnter).FirstOrDefault(x => x.Password == PasswordToEnter) != null)
 				{
-					cookies.Append("Login", LoginToEnter);
-					cookies.Append("Password", PasswordToEnter);
+					cookies.Delete("Login");
+					cookies.Append("Login", LoginToEnter,new CookieOptions
+					{
+						Expires = DateTime.UtcNow.Add(TimeSpan.FromDays(7)),
+						HttpOnly = true,
+						Secure = true,
+						SameSite = SameSiteMode.Strict
+					});
 					return RedirectToAction("OwnWeather", "OwnCabinet");
 				}
 			}
 
+			return View();
+		}
+		public IActionResult Registration(string LoginToRegistr = "", string PasswordToRegistr = "")
+		{
+			var cookies = HttpContext.Response.Cookies;
 			if (LoginToRegistr != "" && PasswordToRegistr != "")
 			{
+				if (db.users.Where(x => x.Login == LoginToRegistr).FirstOrDefault(x => x.Password == PasswordToRegistr) != null)
+				{
+					cookies.Delete("Login");
+					cookies.Append("Login", LoginToRegistr, new CookieOptions
+					{
+						Expires = DateTime.UtcNow.Add(TimeSpan.FromDays(7)),
+						HttpOnly = true,
+						Secure = true,
+						SameSite = SameSiteMode.Strict
+					});
+					return RedirectToAction("OwnWeather", "OwnCabinet");
+				}
 				User newUser = new User();
 				newUser.Login = LoginToRegistr;
 				newUser.Password = PasswordToRegistr;
 				db.users.Add(newUser);
 				db.SaveChanges();
-				cookies.Append("Login", LoginToRegistr);
-				cookies.Append("Password", PasswordToRegistr);
 			}
 
-			return View(viewModel);
+			return View();
 		}
 	}
 }
