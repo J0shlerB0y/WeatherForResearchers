@@ -1,7 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json.Linq;
-using System.Net;
-using System.Text;
 using WeatherResearcher.Models;
 using WeatherResearcher.Services;
 
@@ -10,11 +7,14 @@ namespace WeatherResearcher.Controllers
 	public class OwnCabinetController : AbstractWeatherShowerController
 	{
 		private readonly ILogger<HomeController> _logger;
+		private PasswordHandler passwordHandler;
 
-		public OwnCabinetController(ILogger<HomeController> logger, ApplicationContext ContextDb)
+		public OwnCabinetController(ILogger<HomeController> logger, ApplicationContext ContextDb, PasswordHandler _passwordHandler)
 		{
+			passwordHandler = _passwordHandler;
 			_logger = logger;
 			db = ContextDb;
+			this.passwordHandler = passwordHandler;
 		}
 		public async Task<IActionResult> OwnWeather(int page = 0,
 			FilterViewModel filter = null,
@@ -25,11 +25,12 @@ namespace WeatherResearcher.Controllers
 
 			var cookies = HttpContext.Request.Cookies;
 
-			if (cookies["Login"] != null)
+			if (cookies["Login"] != null && cookies["Password"] != null)
 			{
 				citiesAndCountries = db.userscities.Join(
 					db.users.Where(
-						(x)=> x.Login == cookies["Login"]
+						(x)=> (x.Login == cookies["Login"]) &&
+						( x.Password == passwordHandler.DecryptString(cookies["Password"]) )
 						),
 					x => x.UserId,
 					y => y.Id,
@@ -47,9 +48,6 @@ namespace WeatherResearcher.Controllers
 				{
 					if (cooke.Key != "Login")
 					{
-						var tttt = cooke.Value;
-						var yyyy = db.citiesAndCountries.Where(x => x.Id.ToString() == cooke.Value).FirstOrDefault();
-
 						citiesAndCountries = citiesAndCountries.Append<CityAndCountry>(db.citiesAndCountries.FirstOrDefault(x => x.Id.ToString() == cooke.Value));
 					}
 				}

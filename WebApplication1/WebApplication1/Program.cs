@@ -1,9 +1,3 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
 using WeatherResearcher.MiddlewareTokens;
 using WeatherResearcher.Services;
 
@@ -12,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddHttpClient();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddSingleton<ApplicationContext>();
+builder.Services.AddSingleton<PasswordHandler>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
@@ -43,10 +38,3 @@ app.MapControllerRoute(
 	pattern: "{controller=SignIn}/{action=Authentication}/{id?}");
 
 app.Run();
-
-public struct AuthOptions
-{
-	public const string ISSUER = "Server"; // издатель токена
-	public const string AUDIENCE = "Client"; // потребитель токена
-	public static SymmetricSecurityKey KEY = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("NatureIsOurHome"));   // ключ для шифрации
-}

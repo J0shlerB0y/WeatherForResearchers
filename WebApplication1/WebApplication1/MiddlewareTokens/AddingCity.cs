@@ -11,10 +11,12 @@ namespace WeatherResearcher.MiddlewareTokens
 		{
 			public int Id { get; set; }
 		}
+		private PasswordHandler passwordHandler;
 		private ApplicationContext db;
 		private RequestDelegate next;
-		public AddingCity(RequestDelegate next, ApplicationContext db)
+		public AddingCity(RequestDelegate next, ApplicationContext db, PasswordHandler _passwordHandler)
 		{
+			passwordHandler = _passwordHandler;
 			this.db = db;
 			this.next = next;
 		}
@@ -24,14 +26,17 @@ namespace WeatherResearcher.MiddlewareTokens
 			if (context.Request.Path.Value.ToString() == ("/api/add/user"))
 			{
 				var cookies = context.Request.Cookies;
-				if (cookies["Login"] != null)
+				if (cookies["Login"] != null && cookies["Password"] != null)
 				{
 					CityId cityId = await context.Request.ReadFromJsonAsync<CityId>();
+					string desrPasHAsh = passwordHandler.DecryptString(cookies["Password"]);
 					UsersCity userCity = new UsersCity()
 					{
 						CityId = cityId.Id,
-						UserId =
-								db.users.FirstOrDefault(x => x.Login == cookies["Login"]).Id
+						UserId = db.users
+								.Where(x => x.Login == cookies["Login"])
+								.FirstOrDefault(x=> x.Password == passwordHandler.DecryptString(cookies["Password"]))
+								.Id
 					};
 					db.userscities.Add(userCity);
 					db.SaveChanges();
