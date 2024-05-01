@@ -22,7 +22,6 @@ namespace WeatherResearcher.Controllers
 			cookieOptions = new CookieOptions()
 			{
 				Expires = DateTime.UtcNow.Add(TimeSpan.FromDays(7)),
-				HttpOnly = true,
 				Secure = true,
 				SameSite = SameSiteMode.Strict
 			};
@@ -30,25 +29,22 @@ namespace WeatherResearcher.Controllers
 		public IActionResult Authentication(string LoginToEnter = "", string PasswordToEnter = "")
 		{
 			var cookiesResp = HttpContext.Response.Cookies;
-			var cookiesReq = HttpContext.Request.Cookies;
 			if (LoginToEnter != "" && PasswordToEnter != "")
 			{
-				if (db.users.Where(x => x.Login == LoginToEnter) != null)
+				var user = db.users.FirstOrDefault(x => x.Login == LoginToEnter);
+				if (user != null)
 				{
-					salt = (db.users
-						.Where(x => x.Login == cookiesReq["Login"])
-						.FirstOrDefault(x => x.Password == passwordHandler.DecryptString(cookiesReq["Password"]))
-						.Salt.Split("-"))
-							.Select(hex => Convert.ToByte(hex))
-							.ToArray(); 
-					string passwordHash = passwordHandler.HashPassword(PasswordToEnter, salt);
+					// Hash the password using the user's salt
+					string hashedPassword = passwordHandler.HashPassword(PasswordToEnter, user.Salt.Split('-').Select(hex => Convert.ToByte(hex)).ToArray());
+					if (hashedPassword == user.Password) {
 
-					cookiesResp.Delete("Login");
-					cookiesResp.Append("Login", LoginToEnter, cookieOptions);
-					cookiesResp.Delete("Password");
-					cookiesResp.Append("Password", passwordHandler.EncryptString(passwordHash), cookieOptions);
+						cookiesResp.Delete("Login");
+						cookiesResp.Append("Login", LoginToEnter, cookieOptions);
+						cookiesResp.Delete("Password");
+						cookiesResp.Append("Password", passwordHandler.EncryptString(hashedPassword), cookieOptions);
 
-					return RedirectToAction("OwnWeather", "OwnCabinet");
+						return RedirectToAction("OwnWeather", "OwnCabinet");
+					}
 				}
 			}
 
@@ -74,7 +70,7 @@ namespace WeatherResearcher.Controllers
 					newUser.Password = passwordHash;
 
 					string saltStr = "";
-					for (int i = 0; i < SaltSize-1; i++)
+					for (int i = 0; i < SaltSize - 1; i++)
 					{
 						saltStr += salt[i].ToString() + "-";
 					}
