@@ -11,7 +11,7 @@ function sub(item) {
     alert('You are subscribe to a ' + item + ' weather');
 }
 
-async function sendDelete(item) {
+async function sendDeleteCity(item) {
     const response = await fetch("/api/delete/user", {
         method: "POST",
         headers: { "Accept": "application/json", "Content-Type": "application/json" },
@@ -21,12 +21,43 @@ async function sendDelete(item) {
     });
 }
 
-async function sendAdd(item) {
+async function sendDeleteSnapshot(item) {
+    const response = await fetch("/api/delete/snapshot", {
+        method: "POST",
+        headers: { "Accept": "application/json", "Content-Type": "application/json" },
+        body: JSON.stringify({
+            id: item
+        })
+    });
+}
+
+
+async function sendAddCity(item) {
     const response = await fetch("/api/add/user", {
         method: "POST",
         headers: { "Accept": "application/json", "Content-Type": "application/json" },
         body: JSON.stringify({
             id: item
+        })
+    });
+}
+
+async function sendAddSnapshot( CityId, weather, icon, temp, temp_feels_like, temp_min, temp_max, pressure, humidity, wind_speed) {
+    const response = await fetch("/api/add/snapshot", {
+        method: "POST",
+        headers: { "Accept": "application/json", "Content-Type": "application/json" },
+        body: JSON.stringify({
+            CityId: CityId,
+            Time: new Date().toISOString(),
+            weather: weather,
+            icon: icon,
+            temp: temp,
+            temp_feels_like: temp_feels_like,
+            temp_min: temp_min,
+            temp_max: temp_max,
+            pressure: pressure,
+            humidity: humidity,
+            wind_speed: wind_speed
         })
     });
 }

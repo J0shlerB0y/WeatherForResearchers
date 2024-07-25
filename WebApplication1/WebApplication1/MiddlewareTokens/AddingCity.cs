@@ -29,7 +29,7 @@ namespace WeatherResearcher.MiddlewareTokens
 				if (cookies["Login"] != null && cookies["Password"] != null)
 				{
 					CityId cityId = await context.Request.ReadFromJsonAsync<CityId>();
-					string desrPasHAsh = passwordHandler.DecryptString(cookies["Password"]);
+					string decrPasHash = passwordHandler.DecryptString(cookies["Password"]);
 					UsersCity userCity = new UsersCity()
 					{
 						CityId = cityId.Id,

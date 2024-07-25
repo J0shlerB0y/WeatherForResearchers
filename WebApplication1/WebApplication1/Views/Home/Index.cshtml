@@ -135,13 +135,21 @@
 										<ul class="actions">
 											<li>@if (Model.isLogedIn)
 												{
-													<button class="button alt" onclick="sendAdd('@(Model.cityAndCountry[i].Id)')">Subscribe</button>
+													<button class="button alt" onclick="sendAddCity('@(Model.cityAndCountry[i].Id)')">Subscribe</button>
 												}
 												else
 												{
 													<button class="button alt" onclick="sub('@(Model.cityAndCountry[i].Id)')">Subscribe</button>
 												}
-												
+											</li>
+										</ul>
+
+									</footer>
+
+									<footer>
+										<ul class="actions">
+											<li>
+												<button class="button alt" onclick="sendAddSnapshot('@(Model.cityAndCountry[i].Id)','@(Model.weather[i].weather)','@(Model.weather[i].icon)','@(Model.weather[i].temp)','@(Model.weather[i].temp_feels_like)','@(Model.weather[i].temp_min)','@(Model.weather[i].temp_max)','@(Model.weather[i].pressure)','@(Model.weather[i].humidity)','@(Model.weather[i].wind_speed)')">Snapshot</button>
 											</li>
 										</ul>
 									</footer>

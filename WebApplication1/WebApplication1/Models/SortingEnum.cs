@@ -6,5 +6,19 @@
         CountryAsc,
         CityDesc,
         CountryDesc,
-    }
+        TempAsc, 
+        TempDesc,
+        TempFeelsLikeAsc,
+        TempFeelsLikeDesc,
+        TempMinAsc,
+        TempMinDesc,
+		TempMaxAsc,
+		TempMaxDesc,
+		PressureAsc,
+        PressureDesc,
+        HumidityAsc,
+        HumidityDesc,
+        WindSpeedAsc,
+        WindSpeedDesc
+	}
 }

@@ -58,12 +58,16 @@ namespace WeatherResearcher.Controllers
 				if (db.users.FirstOrDefault(x => x.Login == LoginToRegistr) == null)
 				{
 					new RNGCryptoServiceProvider().GetBytes(salt = new byte[SaltSize]);
-					string passwordHash = passwordHandler.HashPassword(PasswordToRegistr, salt);
+					string passwordHash = passwordHandler
+						.HashPassword(PasswordToRegistr, salt);
 
 					cookies.Delete("Login");
 					cookies.Append("Login", LoginToRegistr, cookieOptions);
 					cookies.Delete("Password");
-					cookies.Append("Password", passwordHandler.EncryptString(passwordHash), cookieOptions);
+					cookies.Append("Password", 
+						passwordHandler
+						.EncryptString(passwordHash), 
+						cookieOptions);
 
 					User newUser = new User();
 					newUser.Login = LoginToRegistr;

@@ -8,7 +8,8 @@ namespace WeatherResearcher.Services
         public DbSet<CityAndCountry> citiesAndCountries { get; set; } = null!;
         public DbSet<User> users { get; set; } = null!;
         public DbSet<UsersCity> userscities { get; set; } = null!;
-        public ApplicationContext()
+		public DbSet<Snapshot> snapshots { get; set; } = null!;
+		public ApplicationContext()
         {
             Database.EnsureCreated();
         }

@@ -21,9 +21,11 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
 app.UseMiddleware<AddingCity>();
 app.UseMiddleware<DeletingCity>();
+
+app.UseMiddleware<AddingSnapshot>();
+app.UseMiddleware<DeletingSnapshot>();
 
 app.MapControllerRoute(
     name: "default",

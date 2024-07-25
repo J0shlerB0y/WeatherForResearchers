@@ -32,7 +32,15 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
-				<!-- Portfolio -->
+
+				<!-- Snnapshots -->
+				<section>
+					<header class="major">
+						<h2><a asp-action="OwnSnapshots" asp-controller="OwnCabinet">Snapshots</a></h2>
+					</header>
+				</section>
+
+				<!-- Own Weather -->
 				<section>
 					<header class="major">
 						<h2>Filtration</h2>
@@ -55,16 +63,16 @@
 					<header class="major">
 						<h2>Sort by</h2>
 					</header>
-					<a asp-action="OwnCabinet" asp-route-sortingState="@SortingEnum.CityAsc"
+					<a asp-action="OwnWeather" asp-route-sortingState="@SortingEnum.CityAsc"
 						asp-route-city="@(Model.filter.City)" asp-route-country="@(Model.filter.Country)">City
 						Ascending&nbsp&nbsp&nbsp&nbsp</a>
-					<a asp-action="OwnCabinet" asp-route-sortingState="@SortingEnum.CountryAsc"
+					<a asp-action="OwnWeather" asp-route-sortingState="@SortingEnum.CountryAsc"
 						asp-route-city="@(Model.filter.City)" asp-route-country="@(Model.filter.Country)">Country
 						Ascending&nbsp&nbsp&nbsp&nbsp</a>
-					<a asp-action="OwnCabinet" asp-route-sortingState="@SortingEnum.CityDesc"
+					<a asp-action="OwnWeather" asp-route-sortingState="@SortingEnum.CityDesc"
 						asp-route-city="@(Model.filter.City)" asp-route-country="@(Model.filter.Country)">City
 						Descending&nbsp&nbsp&nbsp&nbsp</a>
-					<a asp-action="OwnCabinet" asp-route-sortingState="@SortingEnum.CountryDesc"
+					<a asp-action="OwnWeather" asp-route-sortingState="@SortingEnum.CountryDesc"
 						asp-route-city="@(Model.filter.City)" asp-route-country="@(Model.filter.Country)">Country
 						Descending</a>
 					<hr>
@@ -94,11 +102,20 @@
 										<ul class="actions">
 											<li>
 												@{
-													<button class="button alt" onclick="sendDelete('@Model.cityAndCountry[i].Id')">Delete</button>
+													<button class="button alt" onclick="sendDeleteCity('@Model.cityAndCountry[i].Id')">Delete</button>
 												}
 											</li>
 										</ul>
 									</footer>
+									<footer>
+										<ul class="actions">
+											<li>
+												<button class="button alt" onclick="sendAddSnapshot('@(Model.cityAndCountry[i].Id)','@(Model.weather[i].weather)','@(Model.weather[i].icon)','@(Model.weather[i].temp)','@(Model.weather[i].temp_feels_like)','@(Model.weather[i].temp_min)','@(Model.weather[i].temp_max)','@(Model.weather[i].pressure)','@(Model.weather[i].humidity)','@(Model.weather[i].wind_speed)')">Snapshot</button>
+											</li>
+										</ul>
+									</footer>
+
+
 								</section>
 							</div>
 						}

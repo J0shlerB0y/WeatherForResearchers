@@ -10,22 +10,18 @@ namespace WeatherResearcher.Controllers
 {
 	public abstract class AbstractWeatherShowerController : Controller
 	{
-		private ForWeatherModel forIndexViewModel;
+		protected ForWeatherModel forIndexViewModel;
 		protected ApplicationContext db;
-		private int count;
+		protected int count;
 		protected int pageSize = 12;
-		private List<CityAndCountry> pageCitiesAndCountriesList;
-		private Queue<CityAndCountry> pageCitiesAndCountriesQueue;
+		protected List<CityAndCountry> pageCitiesAndCountriesList;
+		protected Queue<CityAndCountry> pageCitiesAndCountriesQueue;
 		protected IQueryable<CityAndCountry> citiesAndCountries;
-		private List<WeatherModel> WeatherForView;
+		protected List<WeatherModel> WeatherForView;
 		protected bool isLogedIn = false;
 
-
-		protected async Task<IActionResult> PostWeather(int page = 0,
-			FilterViewModel filter = null,
-			SortingEnum sortingState = SortingEnum.CityAsc)
+		protected void filtration(FilterViewModel filter = null)
 		{
-			//filtration
 			if (!String.IsNullOrEmpty(filter.City))
 			{
 				citiesAndCountries = citiesAndCountries.Where(c => filter.City == c.CityTitle_en);
@@ -34,8 +30,10 @@ namespace WeatherResearcher.Controllers
 			{
 				citiesAndCountries = citiesAndCountries.Where(c => filter.Country == c.CountryTitle_en || filter.Country == c.CountryTitle_en);
 			}
+		}
 
-			//sorting
+		protected void sorting(SortingEnum sortingState = SortingEnum.CityAsc)
+		{
 			switch (sortingState)
 			{
 				case SortingEnum.CityAsc:
@@ -51,16 +49,17 @@ namespace WeatherResearcher.Controllers
 					citiesAndCountries = citiesAndCountries.OrderByDescending(s => s.CountryTitle_en);
 					break;
 			}
+		}
 
-			//building items for Page
+		protected void buildingItems(int page = 0)
+		{
 			count = citiesAndCountries.Count();
 			pageCitiesAndCountriesList = citiesAndCountries.Skip(page * pageSize).Take(pageSize).ToList();
 			pageCitiesAndCountriesQueue = new Queue<CityAndCountry>(pageCitiesAndCountriesList);
+		}
 
-			//limiting pageSize
-			pageSize = pageCitiesAndCountriesList.Count();
-
-			//finding weather
+		protected void findingWeather(int page = 0)
+		{
 			WeatherForView = new List<WeatherModel>();
 			while (WeatherForView.Count < pageSize)
 			{
@@ -70,7 +69,12 @@ namespace WeatherResearcher.Controllers
 					WeatherForView.Add(tempWeatherModel);
 				}
 			}
-			//building view Model
+		}
+
+		protected void buildingModel(int page = 0,
+			FilterViewModel filter = null,
+			SortingEnum sortingState = SortingEnum.CityAsc)
+		{
 			forIndexViewModel = new ForWeatherModel(
 				pageCitiesAndCountriesList.ToList(),
 				new PageViewModel(count, page, pageSize),
@@ -85,6 +89,24 @@ namespace WeatherResearcher.Controllers
 					Country = filter.Country
 				}
 			};
+		}
+
+		protected async Task<IActionResult> PostWeather(int page = 0,
+			FilterViewModel filter = null,
+			SortingEnum sortingState = SortingEnum.CityAsc)
+		{
+			filtration(filter);
+
+			sorting(sortingState);
+
+			buildingItems(page);
+
+			pageSize = pageCitiesAndCountriesList.Count();
+
+			findingWeather(page);
+
+			buildingModel(page, filter, sortingState);
+
 			return View(forIndexViewModel);
 		}
 		public IActionResult Privacy()
@@ -96,7 +118,7 @@ namespace WeatherResearcher.Controllers
 		{
 			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
 		}
-		public WeatherModel GetWeather(CityAndCountry cityAndCountryToFindWeather, int page = 0)
+		protected WeatherModel GetWeather(CityAndCountry cityAndCountryToFindWeather, int page = 0)
 		{
 			string cityToFindWeather = cityAndCountryToFindWeather.CityTitle_en;
 			HttpWebRequest request =
@@ -122,20 +144,20 @@ namespace WeatherResearcher.Controllers
 				outputWeather.icon = $"https://openweathermap.org/img/wn/{jsonWeather.GetValue("icon").ToString()}@2x.png";
 
 				JObject jsonputMain = JObject.Parse(json.GetValue("main").ToString());
-				outputWeather.temp = jsonputMain.GetValue("temp").ToString();
+				outputWeather.temp = (int)jsonputMain.GetValue("temp");
 
-				outputWeather.temp_feels_like = jsonputMain.GetValue("feels_like").ToString();
+				outputWeather.temp_feels_like = (int)jsonputMain.GetValue("feels_like");
 
-				outputWeather.temp_min = jsonputMain.GetValue("temp_min").ToString();
+				outputWeather.temp_min = (int)jsonputMain.GetValue("temp_min");
 
-				outputWeather.temp_max = jsonputMain.GetValue("temp_max").ToString();
+				outputWeather.temp_max = (int)jsonputMain.GetValue("temp_max");
 
-				outputWeather.pressure = jsonputMain.GetValue("pressure").ToString();
+				outputWeather.pressure = (int)jsonputMain.GetValue("pressure");
 
-				outputWeather.humidity = jsonputMain.GetValue("humidity").ToString();
+				outputWeather.humidity = (int)jsonputMain.GetValue("humidity");
 
 				JObject jsonWind = JObject.Parse(json.GetValue("wind").ToString());
-				outputWeather.wind_speed = jsonWind.GetValue("speed").ToString();
+				outputWeather.wind_speed = (int)jsonWind.GetValue("speed");
 			}
 			catch
 			{
