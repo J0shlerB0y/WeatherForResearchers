@@ -35,6 +35,9 @@
 					<header class="major">
 						<h2>Filtration</h2>
 					</header>
+					<div class="filter-container">
+						<button class="filter-toggle">Filter Options</button>
+						<div class="filter-content">
 					<form method="get">
 						<header>
 
@@ -45,66 +48,89 @@
 							<input type="text" name="filter.Country" value="@Model.filter.Country"
 								   class="form-control" />
 							<br />
-							<h3>Time: </h3>
-							<input type="datetime" name="filter.TopWeather.Time" value="@Model.filter.TopWeather.Time" class="form-control" />
-							<input type="datetime" name="filter.BottomWeather.Time" value="@Model.filter.BottomWeather.Time" class="form-control" />
-							<br />
+							<h3 class="form-header">Time: </h3>
+							<div class="filtr-form-from-to">
+								<label for="filter.TopWeather.Time">From:</label>
+								<input type="datetime" name="filter.TopWeather.Time" value="@Model.filter.TopWeather.Time" class="form-control" />
+							
+								<label for="filter.BottomWeather.Time">To:</label>
+								<input type="datetime" name="filter.BottomWeather.Time" value="@Model.filter.BottomWeather.Time" class="form-control" />
+							</div>
 
-							<h3>Temp: </h3>
-							<input type="number" name="TopWeather.temp" value="@Model.filter.TopWeather.temp"
-								   class="form-control" />
-							<input type="number" name="BottomWeather.temp" value="@Model.filter.BottomWeather.temp"
-								   class="form-control" />
-							<br />
 
-							<h3>Temp feels like: </h3>
-							<input type="number" step="0.01" name="TopWeather.temp_feels_like" value="@Model.filter.TopWeather.temp_feels_like"
-								   class="form-control" />
-							<input type="number" step="0.01" name="BottomWeather.temp_feels_like" value="@Model.filter.BottomWeather.temp_feels_like"
-								   class="form-control" />
-							<br />
+							<h3 class="form-header">Temp: </h3>
+							<div class="filtr-form-from-to">
+										<label for="TopWeather.temp">From:</label>
+										<input type="number" name="TopWeather.temp" value="@Model.filter.TopWeather.temp" class="form-control" />
+									
+										<label for="BottomWeather.temp">To:</label>
+										<input type="number" name="BottomWeather.temp" value="@Model.filter.BottomWeather.temp" class="form-control" />
+							</div>
 
-							<h3>Temp Min: </h3>
-							<input type="number" step="0.01" name="TopWeather.temp_min" value="@Model.filter.TopWeather.temp_min"
-								   class="form-control" />
-							<input type="number" step="0.01" name="BottomWeather.temp_min" value="@Model.filter.BottomWeather.temp_min"
-								   class="form-control" />
-							<br />
+							<h3 class="form-header">Temp feels like: </h3>
+							<div class="filtr-form-from-to">
+										<label for="TopWeather.temp_feels_like">From:</label>
+										<input type="number" step="0.01" name="TopWeather.temp_feels_like" value="@Model.filter.TopWeather.temp_feels_like" class="form-control" />
+									
+										<label for="BottomWeather.temp_feels_like">To:</label>
+										<input type="number" step="0.01" name="BottomWeather.temp_feels_like" value="@Model.filter.BottomWeather.temp_feels_like" class="form-control" />
+							</div>
 
-							<h3>Temp Max: </h3>
-							<input type="number" step="0.01" name="TopWeather.temp_max" value="@Model.filter.TopWeather.temp_max"
-								   class="form-control" />
-							<input type="number" step="0.01" name="BottomWeather.temp_max" value="@Model.filter.BottomWeather.temp_max"
-								   class="form-control" />
-							<br />
+							<h3 class="form-header">Temp Min: </h3>
+							<div class="filtr-form-from-to">
+										<label for="TopWeather.temp_min">From:</label>
+										<input type="number" step="0.01" name="TopWeather.temp_min" value="@Model.filter.TopWeather.temp_min" class="form-control" />
+									
+										<label for="BottomWeather.temp_min">To:</label>
+										<input type="number" step="0.01" name="BottomWeather.temp_min" value="@Model.filter.BottomWeather.temp_min" class="form-control" />
+							</div>
 
-							<h3>Pressure: </h3>
-							<input type="number" step="0.01" name="TopWeather.pressure" value="@Model.filter.TopWeather.pressure"
-								   class="form-control" />
-							<input type="number" step="0.01" name="BottomWeather.pressure" value="@Model.filter.BottomWeather.pressure"
-								   class="form-control" />
-							<br />
+							<h3 class="form-header">Temp Max: </h3>
+							<div class="filtr-form-from-to">
+									
+										<label for="TopWeather.temp_max">From:</label>
+										<input type="number" step="0.01" name="TopWeather.temp_max" value="@Model.filter.TopWeather.temp_max" class="form-control" />
+									
+										<label for="BottomWeather.temp_max">To:</label>
+										<input type="number" step="0.01" name="BottomWeather.temp_max" value="@Model.filter.BottomWeather.temp_max" class="form-control" />
+							</div>
 
-							<h3>Humidity: </h3>
-							<input type="number" step="0.01" name="TopWeather.humidity" value="@Model.filter.TopWeather.humidity"
-								   class="form-control" />
-							<input type="number" step="0.01" name="BottomWeather.humidity" value="@Model.filter.BottomWeather.humidity"
-								   class="form-control" />
-							<br />
+							<h3 class="form-header">Pressure: </h3>
+							<div class="filtr-form-from-to">
+										<label for="TopWeather.pressure">From:</label>
+										<input type="number" step="0.01" name="TopWeather.pressure" value="@Model.filter.TopWeather.pressure" class="form-control" />
+									
+										<label for="BottomWeather.pressure">To:</label>
+										<input type="number" step="0.01" name="BottomWeather.pressure" value="@Model.filter.BottomWeather.pressure" class="form-control" />
+							</div>
 
-							<h3>Wind speed: </h3>
-							<input type="number" step="0.01" name="TopWeather.wind_speed" value="@Model.filter.TopWeather.wind_speed"
-								   class="form-control" />
-							<input type="number" step="0.01" name="BottomWeather.wind_speed" value="@Model.filter.BottomWeather.wind_speed"
-								   class="form-control" />
-							<br />
+							<h3 class="form-header">Humidity: </h3>
+							<div class="filtr-form-from-to">
+										<label for="TopWeather.humidity">From:</label>
+										<input type="number" step="0.01" name="TopWeather.humidity" value="@Model.filter.TopWeather.humidity" class="form-control" />
+									
+										<label for="BottomWeather.humidity">To:</label>
+										<input type="number" step="0.01" name="BottomWeather.humidity" value="@Model.filter.BottomWeather.humidity" class="form-control" />
+							</div>
+
+							<h3 class="form-header">Wind speed: </h3>
+							<div class="filtr-form-from-to">
+										<label for="TopWeather.wind_speed">From:</label>
+										<input type="number" step="0.01" name="TopWeather.wind_speed" value="@Model.filter.TopWeather.wind_speed" class="form-control" />
+									
+										<label for="BottomWeather.wind_speed">To:</label>
+										<input type="number" step="0.01" name="BottomWeather.wind_speed" value="@Model.filter.BottomWeather.wind_speed" class="form-control" />
+							</div>
+							
 						</header>
 						<footer>
 							<ul class="actions">
 								<input type="submit" value="Filtrate" class="button alt" />
 							</ul>
 						</footer>
-					</form>
+							</form>
+						</div>
+					</div>
 					<header class="major">
 						<h2>Sort by</h2>
 					</header>

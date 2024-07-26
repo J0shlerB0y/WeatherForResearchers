@@ -1,4 +1,9 @@
-﻿
+﻿const toggleButton = document.querySelector('.filter-toggle');
+const filterContent = document.querySelector('.filter-content');
+
+toggleButton.addEventListener('click', () => {
+    filterContent.classList.toggle('active');
+});
 function sub(item) {
     var cookieArr = document.cookie.split(";");
     for (var i = 0; i < cookieArr.length; i++) {
