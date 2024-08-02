@@ -1,3 +1,6 @@
+@using WeatherResearcher.Models
+@model DataToAuth
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 <style>
 	@@font-face {
@@ -37,11 +40,20 @@
 					</header>
 					<form method="get">
 						<header>
-							<h3>Login: </h3>
-							<input type="text" name="LoginToEnter" class="form-control" />
+							@Html.Raw(ViewData["WrongLoginOrPasswordMessage"])
+
+							<h3 asp-for="Login">Login: </h3>
+							<input asp-for="Login" type="text" name="Login" class="form-control" />
+							<span asp-validation-for="Login" ></span>
 							<br />
-							<h3>Passowrd: </h3>
-							<input type="text" name="PasswordToEnter" class="form-control" />
+							@* <h3 asp-for="Login">Email: </h3>
+							<input asp-for="Email" type="email" name="Email" class="form-control" />
+							<span asp-validation-for="Email" />
+							<br /> *@
+
+							<h3 asp-for="Password">Passowrd: </h3>
+							<input asp-for="Password" type="password" name="Password" class="form-control" />
+							<span asp-validation-for="Password" ></span>
 						</header>
 						<footer>
 							<ul class="actions">

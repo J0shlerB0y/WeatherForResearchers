@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using WeatherResearcher.Models;
 using WeatherResearcher.Services;
 
@@ -26,20 +28,28 @@ namespace WeatherResearcher.MiddlewareTokens
 			if (context.Request.Path.Value.ToString() == ("/api/add/user"))
 			{
 				var cookies = context.Request.Cookies;
-				if (cookies["Login"] != null && cookies["Password"] != null)
+				if (cookies["Login"] != null && cookies["Password"] != null && !db.users.Where(x => x.Login
+							== cookies["Login"] && passwordHandler.DecryptString(cookies["Password"]) == x.Password).IsNullOrEmpty())
 				{
 					CityId cityId = await context.Request.ReadFromJsonAsync<CityId>();
 					string decrPasHash = passwordHandler.DecryptString(cookies["Password"]);
 					UsersCity userCity = new UsersCity()
 					{
 						CityId = cityId.Id,
-						UserId = db.users
-								.Where(x => x.Login == cookies["Login"])
-								.FirstOrDefault(x=> x.Password == passwordHandler.DecryptString(cookies["Password"]))
+						UserId = db.users.FirstOrDefault(x => x.Login
+							== cookies["Login"] &&
+							passwordHandler.DecryptString(cookies["Password"]) == x.Password)
 								.Id
 					};
-					db.userscities.Add(userCity);
-					db.SaveChanges();
+					if (userCity is not null)
+					{
+						db.userscities.Add(userCity);
+						db.SaveChanges();
+					}
+				}
+				else
+				{
+					//add alert
 				}
 			}
 			await next.Invoke(context);

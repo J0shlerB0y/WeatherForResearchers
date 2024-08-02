@@ -329,6 +329,12 @@ p {
   }
 }
 
+.error-message h3 {
+  color: #d52349;
+  font-size: 30px;
+  margin-top: 10px;
+}
+
 /* Row */
 .row {
   display: flex;
@@ -1553,14 +1559,14 @@ form label {
 
 form input[type=text],
 form input[type=number],
-form input[type=datetime] :focus {
+form input[type=datetime-local] :focus {
   border: 5px solid #d52349;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 form input[type=text],
 form input[type=number],
-form input[type=datetime] {
+form input[type=datetime-local] {
   font-size: 1rem;
   border-radius: 5px;
   width: 100%;

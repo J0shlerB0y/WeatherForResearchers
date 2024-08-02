@@ -48,25 +48,33 @@ namespace WeatherResearcher.Services
 
 		public string DecryptString(string encryptedText)
 		{
-			byte[] encryptedBytesWithIV = Convert.FromBase64String(encryptedText);
-			byte[] encryptedIV = new byte[16];
-			byte[] encryptedBytes = new byte[encryptedBytesWithIV.Length - 16];
-
-			Array.Copy(encryptedBytesWithIV, 0, encryptedIV, 0, 16);
-			Array.Copy(encryptedBytesWithIV, 16, encryptedBytes, 0, encryptedBytes.Length);
-
-			using (var aes = Aes.Create())
+			if (encryptedText != null)
 			{
-				aes.Key = encryptionKey;
-				aes.IV = encryptedIV;
+				byte[] encryptedBytesWithIV = Convert.FromBase64String(encryptedText);
+				byte[] encryptedIV = new byte[16];
+				byte[] encryptedBytes = new byte[encryptedBytesWithIV.Length - 16];
 
-				using (var decryptor = aes.CreateDecryptor(aes.Key, aes.IV))
-				using (var memoryStream = new MemoryStream(encryptedBytes))
-				using (var cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Read))
-				using (var streamReader = new StreamReader(cryptoStream))
+				Array.Copy(encryptedBytesWithIV, 0, encryptedIV, 0, 16);
+				Array.Copy(encryptedBytesWithIV, 16, encryptedBytes, 0, encryptedBytes.Length);
+
+				using (var aes = Aes.Create())
 				{
-					return streamReader.ReadToEnd();
+					aes.Key = encryptionKey;
+					aes.IV = encryptedIV;
+
+					using (var decryptor = aes.CreateDecryptor(aes.Key, aes.IV))
+					using (var memoryStream = new MemoryStream(encryptedBytes))
+					using (var cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Read))
+					using (var streamReader = new StreamReader(cryptoStream))
+					{
+						return streamReader.ReadToEnd();
+					}
+
 				}
+			}
+			else
+			{
+				return null;
 			}
 		}
 	}

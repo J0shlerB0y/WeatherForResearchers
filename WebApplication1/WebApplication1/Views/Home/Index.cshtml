@@ -107,14 +107,16 @@
 										</ul>
 
 									</footer>
-
-									<footer>
-										<ul class="actions">
-											<li>
-												<button class="button alt" onclick="sendAddSnapshot('@(Model.cityAndCountry[i].Id)','@(Model.weather[i].weather)','@(Model.weather[i].icon)','@(Model.weather[i].temp)','@(Model.weather[i].temp_feels_like)','@(Model.weather[i].temp_min)','@(Model.weather[i].temp_max)','@(Model.weather[i].pressure)','@(Model.weather[i].humidity)','@(Model.weather[i].wind_speed)')">Snapshot</button>
-											</li>
-										</ul>
-									</footer>
+									@if (Model.isLogedIn)
+									{
+										<footer>
+											<ul class="actions">
+												<li>
+													<button class="button alt" onclick="sendAddSnapshot('@(Model.cityAndCountry[i].Id)','@(Model.weather[i].weather)','@(Model.weather[i].icon)','@(Model.weather[i].temp)','@(Model.weather[i].temp_feels_like)','@(Model.weather[i].temp_min)','@(Model.weather[i].temp_max)','@(Model.weather[i].pressure)','@(Model.weather[i].humidity)','@(Model.weather[i].wind_speed)')">Snapshot</button>
+												</li>
+											</ul>
+										</footer>
+									}
 								</section>
 							</div>
 						}

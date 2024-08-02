@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using WeatherResearcher.Models;
 using WeatherResearcher.Services;
 
@@ -26,19 +28,20 @@ namespace WeatherResearcher.MiddlewareTokens
 			if (context.Request.Path.Value.ToString() == ("/api/delete/snapshot"))
 			{
 				var cookies = context.Request.Cookies;
-				if (cookies["Login"] != null && cookies["Password"] != null)
+				if (cookies["Login"] != null && cookies["Password"] != null && !db.users.Where(x => x.Login
+							== cookies["Login"] && passwordHandler.DecryptString(cookies["Password"]) == x.Password).IsNullOrEmpty())
 				{
 					SnapshotId snapshotId = await context.Request.ReadFromJsonAsync<SnapshotId>();
-					int userIdForWeatherSnapshot = db.users.Where(
-						(x) => (x.Login == cookies["Login"]) &&
-						(x.Password == passwordHandler.DecryptString(cookies["Password"]))
-						).FirstOrDefault().Id;
+					int userIdForWeatherSnapshot = db.users.FirstOrDefault(x => x.Login
+							== cookies["Login"] &&
+							passwordHandler.DecryptString(cookies["Password"]) == x.Password)
+								.Id;
 					Snapshot snapshotToDelete = db.snapshots.Where(x =>
 					x.UserId == userIdForWeatherSnapshot 
 					).Where(
 						z => z.Id == snapshotId.Id
 						).First();
-					if (snapshotToDelete != null)
+					if (snapshotToDelete is not null)
 					{
 						db.snapshots.Remove(snapshotToDelete);
 						db.SaveChanges();

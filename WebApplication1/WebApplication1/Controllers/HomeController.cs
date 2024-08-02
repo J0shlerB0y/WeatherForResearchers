@@ -1,18 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using WeatherResearcher.Models;
 using WeatherResearcher.Services;
 
 namespace WeatherResearcher.Controllers
 {
-    public class HomeController : AbstractWeatherShowerController
+	public class HomeController : AbstractWeatherShowerController
 	{
-		private UsersCity userCity;
-		protected readonly ILogger<HomeController> _logger;
+		private readonly ILogger<HomeController> _logger;
+		private PasswordHandler passwordHandler;
 
-		public HomeController(ILogger<HomeController> logger, ApplicationContext ContextDb)
+		public HomeController(ILogger<HomeController> logger, ApplicationContext ContextDb, PasswordHandler passwordHandler)
 		{
 			_logger = logger;
 			db = ContextDb;
+			this.passwordHandler = passwordHandler;
 		}
 
 
@@ -22,12 +24,13 @@ namespace WeatherResearcher.Controllers
 		{
 			//Logining
 			var cookies = HttpContext.Request.Cookies;
-			if (cookies["Login"] != null)
+			if (cookies["Login"] != null && cookies["Password"] != null && !db.users.Where(x => x.Login
+							== cookies["Login"] && passwordHandler.DecryptString(cookies["Password"]) == x.Password).IsNullOrEmpty())
 			{
 				isLogedIn = true;
 			}
 			citiesAndCountries = db.citiesAndCountries;
-			
+
 			return await PostWeather(page, filter, sortingState);
 		}
 	}

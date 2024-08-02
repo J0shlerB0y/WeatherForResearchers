@@ -50,11 +50,13 @@
 							<br />
 							<h3 class="form-header">Time: </h3>
 							<div class="filtr-form-from-to">
-								<label for="filter.TopWeather.Time">From:</label>
-								<input type="datetime" name="filter.TopWeather.Time" value="@Model.filter.TopWeather.Time" class="form-control" />
+								<label for="TopWeather.Time">From:</label>
+										<input type="datetime-local" name="TopWeather.Time"
+											   value="@Model.filter.TopWeather.Time" class="form-control" />
 							
-								<label for="filter.BottomWeather.Time">To:</label>
-								<input type="datetime" name="filter.BottomWeather.Time" value="@Model.filter.BottomWeather.Time" class="form-control" />
+								<label for="BottomWeather.Time">To:</label>
+										<input type="datetime-local" name="BottomWeather.Time"
+											   value="@Model.filter.BottomWeather.Time" class="form-control" />
 							</div>
 
 
@@ -131,6 +133,14 @@
 							</form>
 						</div>
 					</div>
+					<script> 
+						const toggleButton = document.querySelector('.filter-toggle');
+						const filterContent = document.querySelector('.filter-content');
+
+						toggleButton.addEventListener('click', () => {
+							filterContent.classList.toggle('active');
+						});
+					</script>
 					<header class="major">
 						<h2>Sort by</h2>
 					</header>
@@ -144,7 +154,6 @@
 					   asp-route-TopWeather.temp_min="@(Model.filter.TopWeather.temp_min)"
 					   asp-route-TopWeather.temp_max="@(Model.filter.TopWeather.temp_max)"
 					   asp-route-TopWeather.wind_speed="@(Model.filter.TopWeather.wind_speed)"
-					   asp-route-TopWeather.Time="@(Model.filter.TopWeather.weather)"
 					   asp-route-BottomWeather.Time="@(Model.filter.BottomWeather.Time)"
 					   asp-route-BottomWeather.pressure="@(Model.filter.BottomWeather.pressure)"
 					   asp-route-BottomWeather.humidity="@(Model.filter.BottomWeather.humidity)"

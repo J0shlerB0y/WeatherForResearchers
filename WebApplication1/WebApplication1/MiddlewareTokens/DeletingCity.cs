@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using WeatherResearcher.Models;
 using WeatherResearcher.Services;
 
@@ -26,15 +28,17 @@ namespace WeatherResearcher.MiddlewareTokens
 			{
 				var cookies = context.Request.Cookies;
 				CityId cityId = await context.Request.ReadFromJsonAsync<CityId>();
-				if (cookies["Login"] != null && cookies["Password"] != null)
+				if (cookies["Login"] != null && cookies["Password"] != null && !db.users.Where(x => x.Login
+							== cookies["Login"] && passwordHandler.DecryptString(cookies["Password"]) == x.Password).IsNullOrEmpty())
 				{
 					UsersCity usersCityToDelete = db.userscities.Where(
-						z => z.UserId == db.users
-							.Where(x => x.Login == cookies["Login"]).FirstOrDefault(x => x.Password == passwordHandler.DecryptString(cookies["Password"])).Id
-						).FirstOrDefault(
+						z => z.UserId == db.users.FirstOrDefault(x => x.Login
+							== cookies["Login"] &&
+							passwordHandler.DecryptString(cookies["Password"]) == x.Password)
+								.Id).FirstOrDefault(
 						x => x.CityId == cityId.Id
 						);
-					if (usersCityToDelete != null)
+					if (usersCityToDelete is not null)
 					{
 						db.userscities.Remove(usersCityToDelete);
 						db.SaveChanges();

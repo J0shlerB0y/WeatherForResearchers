@@ -1,4 +1,8 @@
-﻿<style>
+﻿@using WeatherResearcher.Models
+@model DataToRegistr
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<style>
 	@@font-face {
 		font-family: 'FontAwesome';
 		src: url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2') format('woff2'), url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff') format('woff'), url('https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/fonts/fontawesome-webfont.ttf') format('truetype');
@@ -36,11 +40,17 @@
 					</header>
 					<form method="get">
 						<header>
-							<h3>Login: </h3>
-							<input type="text" name="LoginToRegistr" class="form-control" />
+							<h3 asp-for="Login">Login: </h3>
+							<input asp-for="Login" type="text" name="Login" class="form-control" />
+							<span asp-validation-for="Login" ></span>
 							<br />
-							<h3>Passowrd: </h3>
-							<input type="text" name="PasswordToRegistr" class="form-control" />
+							@* <h3 asp-for="Login">Email: </h3>
+							<input asp-for="Email" type="email" name="Email" class="form-control" />
+							<span asp-validation-for="Email" />
+							<br /> *@
+							<h3 asp-for="Password">Passowrd: </h3>
+							<input asp-for="Password" type="password" name="Password" class="form-control" />
+							<span asp-validation-for="Password" ></span>
 						</header>
 						<footer>
 							<ul class="actions">

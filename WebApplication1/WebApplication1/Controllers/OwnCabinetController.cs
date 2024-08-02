@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using WeatherResearcher.Models;
 using WeatherResearcher.Services;
 
@@ -25,13 +27,14 @@ namespace WeatherResearcher.Controllers
 
 			var cookies = HttpContext.Request.Cookies;
 
-			if (cookies["Login"] != null && cookies["Password"] != null)
+			if (cookies["Login"] != null && cookies["Password"] != null && !db.users.Where(x => x.Login
+							== cookies["Login"] && passwordHandler.DecryptString(cookies["Password"]) == x.Password).IsNullOrEmpty())
 			{
+				isLogedIn = true;
 				citiesAndCountries = db.userscities.Join(
-					db.users.Where(
-						(x)=> (x.Login == cookies["Login"]) &&
-						( x.Password == passwordHandler.DecryptString(cookies["Password"]) )
-						),
+					db.users.Where(x => x.Login
+							== cookies["Login"] && 
+							passwordHandler.DecryptString(cookies["Password"]) == x.Password),
 					x => x.UserId,
 					y => y.Id,
 					(x, y) => x.CityId
@@ -72,15 +75,14 @@ namespace WeatherResearcher.Controllers
 			if (cookies["Login"] != null && cookies["Password"] != null)
 			{
 				snapshotsWithCitiesAndCountries = db.snapshots.Join(
-					db.users.Where(
-						(x) => (x.Login == cookies["Login"]) &&
-						(x.Password == passwordHandler.DecryptString(cookies["Password"]))
-						),
+					db.users.Where(x => x.Login
+							== cookies["Login"] &&
+							passwordHandler.DecryptString(cookies["Password"]) == x.Password),
 					x => x.UserId,
 					y => y.Id,
 					(x, y) => new { x.CityId, x.weather, x.icon, 
 						x.temp, x.temp_feels_like, x.temp_min, x.temp_max, 
-						x.pressure, x.humidity, x.wind_speed, x.Id }
+						x.pressure, x.humidity, x.wind_speed, x.Id, x.Time}
 					).Join(db.citiesAndCountries,
 					x => x.CityId,
 					y => y.Id,
@@ -90,7 +92,7 @@ namespace WeatherResearcher.Controllers
 						temp = x.temp, temp_feels_like = x.temp_feels_like, temp_min = x.temp_min, temp_max = x.temp_max, 
 						pressure = x.pressure, humidity = x.humidity, wind_speed = x.wind_speed, 
 						Id = x.Id, 
-						CityTitle_en = y.CityTitle_en, CountryTitle_en = y.CountryTitle_en }
+						CityTitle_en = y.CityTitle_en, CountryTitle_en = y.CountryTitle_en,Time = x.Time}
 					);
 			}
 			else
@@ -107,7 +109,7 @@ namespace WeatherResearcher.Controllers
 				snapshotsWithCitiesAndCountries = snapshotsWithCitiesAndCountries.Where(c => filter.Country == c.CountryTitle_en || filter.Country == c.CountryTitle_en);
 			}
 
-			if (filter.TopWeather.Time is not null)//problem:(
+			if (filter.TopWeather.Time is not null)
 			{
 				snapshotsWithCitiesAndCountries = snapshotsWithCitiesAndCountries.Where(c => filter.TopWeather.Time <= c.Time);
 			}

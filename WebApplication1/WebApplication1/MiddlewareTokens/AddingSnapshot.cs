@@ -2,6 +2,8 @@
 using static System.Net.Mime.MediaTypeNames;
 using WeatherResearcher.Models;
 using WeatherResearcher.Services;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace WeatherResearcher.MiddlewareTokens
 {
@@ -27,16 +29,18 @@ namespace WeatherResearcher.MiddlewareTokens
 			if (context.Request.Path.Value.ToString() == ("/api/add/snapshot"))
 			{
 				var cookies = context.Request.Cookies;
-				if (cookies["Login"] != null && cookies["Password"] != null)
+				if (cookies["Login"] != null && cookies["Password"] != null && !db.users.Where(x => x.Login
+							== cookies["Login"] && passwordHandler.DecryptString(cookies["Password"]) == x.Password).IsNullOrEmpty())
 				{
-					WeatherSnapshotForAddingModel weatherSnapshotForAddingModel = await context.Request.ReadFromJsonAsync<WeatherSnapshotForAddingModel>();
+					WeatherSnapshotForAddingModel weatherSnapshotForAddingModel = await context.Request
+						.ReadFromJsonAsync<WeatherSnapshotForAddingModel>();
 					string decrPasHash = passwordHandler.DecryptString(cookies["Password"]);
 					Snapshot snapshot = new Snapshot()
 					{
 						CityId = weatherSnapshotForAddingModel.CityId,
-						UserId = db.users
-								.Where(x => x.Login == cookies["Login"])
-								.FirstOrDefault(x => x.Password == passwordHandler.DecryptString(cookies["Password"]))
+						UserId = db.users.FirstOrDefault(x => x.Login
+							== cookies["Login"] &&
+							passwordHandler.DecryptString(cookies["Password"]) == x.Password)
 								.Id,
 						Time = weatherSnapshotForAddingModel.Time,
 						weather = weatherSnapshotForAddingModel.weather,
@@ -49,8 +53,11 @@ namespace WeatherResearcher.MiddlewareTokens
 						humidity = weatherSnapshotForAddingModel.humidity,
 						wind_speed = weatherSnapshotForAddingModel.wind_speed
 					};
-					db.snapshots.Add(snapshot);
-					db.SaveChanges();
+					if (snapshot is not null)
+					{
+						db.snapshots.Add(snapshot);
+						db.SaveChanges();
+					}
 				}
 			}
 			await next.Invoke(context);

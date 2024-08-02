@@ -1,9 +1,4 @@
-﻿const toggleButton = document.querySelector('.filter-toggle');
-const filterContent = document.querySelector('.filter-content');
-
-toggleButton.addEventListener('click', () => {
-    filterContent.classList.toggle('active');
-});
+﻿
 function sub(item) {
     var cookieArr = document.cookie.split(";");
     for (var i = 0; i < cookieArr.length; i++) {
@@ -47,7 +42,7 @@ async function sendAddCity(item) {
     });
 }
 
-async function sendAddSnapshot( CityId, weather, icon, temp, temp_feels_like, temp_min, temp_max, pressure, humidity, wind_speed) {
+async function sendAddSnapshot(CityId, weather, icon, temp, temp_feels_like, temp_min, temp_max, pressure, humidity, wind_speed) {
     const response = await fetch("/api/add/snapshot", {
         method: "POST",
         headers: { "Accept": "application/json", "Content-Type": "application/json" },
@@ -72,14 +67,13 @@ function signOut(signOutLink, signInLink) {
     var cookieArr = document.cookie.split(";");
     for (var i = 0; i < cookieArr.length; i++) {
         var cookiePair = cookieArr[i].split("=");
-        if (" Login" == cookiePair[0] || " Password" == cookiePair[0]) {
+        if (" Login" == cookiePair[0] || " Password" == cookiePair[0] || "Login" == cookiePair[0] || "Password" == cookiePair[0]) {
             document.cookie = cookiePair[0] + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
         }
     }
     var signInLink = document.createElement('a');
     signInLink.id = 'Sign';
-    signInLink.setAttribute('asp-action', 'Authentication');
-    signInLink.setAttribute('asp-controller', 'SignIn');
+    signInLink.setAttribute('href', "/SignIn/Authentication");
     signInLink.textContent = 'Sign In';
 
     var existingSignLink = document.getElementById('Sign');
@@ -96,7 +90,8 @@ function hasCookie(name) {
     var cookieArr = document.cookie.split(";");
     for (var i = 0; i < cookieArr.length; i++) {
         var cookiePair = cookieArr[i].split("=");
-        if (' Login' == cookiePair[0]) {
+        console.log(cookiePair[0]);
+        if (' Login' == cookiePair[0] || 'Login' == cookiePair[0]) {
             return true;
         }
     }
@@ -105,6 +100,7 @@ function hasCookie(name) {
 
 var hasLoginCookie = hasCookie("Login");
 document.addEventListener('DOMContentLoaded', function () {
+    console.log("hi");
     if (hasLoginCookie) {
         var signInLink = document.getElementById('Sign');
         var signOutLink = document.createElement('a');
@@ -114,6 +110,5 @@ document.addEventListener('DOMContentLoaded', function () {
         signOutLink.onclick = signOut;
 
         signInLink.parentNode.replaceChild(signOutLink, signInLink);
-
     }
 });
