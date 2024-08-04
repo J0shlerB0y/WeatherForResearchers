@@ -46,9 +46,12 @@ namespace WeatherResearcher.MiddlewareTokens
 				}
 				else
 				{
+					var cookiesToDelete = context.Response.Cookies;
+					cookiesToDelete.Delete("Login");
+					cookiesToDelete.Delete("Password");
 					foreach (var cooke in cookies.ToList())
 					{
-						if (cooke.Key != "Login")
+						if (cooke.Key != "Login" && cooke.Key != " Login" && cooke.Key != "Password" && cooke.Key != " Password")
 						{
 							if (cooke.Value == cityId.Id.ToString())
 							{

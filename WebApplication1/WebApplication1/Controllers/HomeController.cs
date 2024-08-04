@@ -29,6 +29,13 @@ namespace WeatherResearcher.Controllers
 			{
 				isLogedIn = true;
 			}
+			else
+			{
+				var cookiesToDelete = HttpContext.Response.Cookies;
+				cookiesToDelete.Delete("Login");
+				cookiesToDelete.Delete("Password");
+				isLogedIn = false;
+			}
 			citiesAndCountries = db.citiesAndCountries;
 
 			return await PostWeather(page, filter, sortingState);

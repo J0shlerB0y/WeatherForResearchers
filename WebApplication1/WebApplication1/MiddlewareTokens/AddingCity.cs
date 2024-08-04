@@ -49,7 +49,9 @@ namespace WeatherResearcher.MiddlewareTokens
 				}
 				else
 				{
-					//add alert
+					var cookiesToDelete = context.Response.Cookies;
+					cookiesToDelete.Delete("Login");
+					cookiesToDelete.Delete("Password");
 				}
 			}
 			await next.Invoke(context);

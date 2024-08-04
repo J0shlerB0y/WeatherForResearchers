@@ -30,6 +30,11 @@ namespace WeatherResearcher.Controllers
 		}
 		public IActionResult Authentication(DataToAuth dataToAuth)
 		{
+
+			if (!ModelState.IsValid || dataToAuth == null)
+			{
+				return View();
+			}
 			var cookiesResp = HttpContext.Response.Cookies;
 			if (dataToAuth.Login != null && dataToAuth.Password != null)
 			{
@@ -67,6 +72,10 @@ namespace WeatherResearcher.Controllers
 		public IActionResult Registration(DataToRegistr dataToRegistr)
 		{
 			var cookies = HttpContext.Response.Cookies;
+			if (!ModelState.IsValid || dataToRegistr == null)
+			{
+				return View();
+			}
 			if (dataToRegistr.Login != null && dataToRegistr.Password != null)
 			{
 				if (dataToRegistr.Password.Length >=8 && dataToRegistr.Password.Length <= 50)
@@ -121,6 +130,7 @@ namespace WeatherResearcher.Controllers
 			}
 			return View(dataToRegistr);
 		}
+
 		[AcceptVerbs("Get", "Post")]
 		public IActionResult CheckLogin(string login)
 		{

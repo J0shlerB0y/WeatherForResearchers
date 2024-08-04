@@ -3,40 +3,48 @@
   "WorkspaceRootPath": "C:\\Users\\artem\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\WeatherForResearchers\\WebApplication1\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7A65E09A-1ED7-44AD-BF48-623E7A0050C9}|WebApplication1\\WeatherResearcher.csproj|C:\\Users\\artem\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\WeatherForResearchers\\WebApplication1\\webapplication1\\views\\signin\\authentication.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{7A65E09A-1ED7-44AD-BF48-623E7A0050C9}|WebApplication1\\WeatherResearcher.csproj|solutionrelative:webapplication1\\views\\signin\\authentication.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{7A65E09A-1ED7-44AD-BF48-623E7A0050C9}|WebApplication1\\WeatherResearcher.csproj|c:\\users\\artem\\onedrive\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\github\\weatherforresearchers\\webapplication1\\webapplication1\\services\\passwordhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7A65E09A-1ED7-44AD-BF48-623E7A0050C9}|WebApplication1\\WeatherResearcher.csproj|solutionrelative:webapplication1\\services\\passwordhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7A65E09A-1ED7-44AD-BF48-623E7A0050C9}|WebApplication1\\WeatherResearcher.csproj|c:\\users\\artem\\onedrive\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\github\\weatherforresearchers\\webapplication1\\webapplication1\\middlewaretokens\\addingcity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7A65E09A-1ED7-44AD-BF48-623E7A0050C9}|WebApplication1\\WeatherResearcher.csproj|solutionrelative:webapplication1\\middlewaretokens\\addingcity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7A65E09A-1ED7-44AD-BF48-623E7A0050C9}|WebApplication1\\WeatherResearcher.csproj|c:\\users\\artem\\onedrive\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\github\\weatherforresearchers\\webapplication1\\webapplication1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7A65E09A-1ED7-44AD-BF48-623E7A0050C9}|WebApplication1\\WeatherResearcher.csproj|solutionrelative:webapplication1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7A65E09A-1ED7-44AD-BF48-623E7A0050C9}|WebApplication1\\WeatherResearcher.csproj|C:\\Users\\artem\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\WeatherForResearchers\\WebApplication1\\webapplication1\\views\\signin\\registration.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{7A65E09A-1ED7-44AD-BF48-623E7A0050C9}|WebApplication1\\WeatherResearcher.csproj|solutionrelative:webapplication1\\views\\signin\\registration.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{7A65E09A-1ED7-44AD-BF48-623E7A0050C9}|WebApplication1\\WeatherResearcher.csproj|c:\\users\\artem\\onedrive\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\github\\weatherforresearchers\\webapplication1\\webapplication1\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7A65E09A-1ED7-44AD-BF48-623E7A0050C9}|WebApplication1\\WeatherResearcher.csproj|solutionrelative:webapplication1\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7A65E09A-1ED7-44AD-BF48-623E7A0050C9}|WebApplication1\\WeatherResearcher.csproj|c:\\users\\artem\\onedrive\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\github\\weatherforresearchers\\webapplication1\\webapplication1\\controllers\\signincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7A65E09A-1ED7-44AD-BF48-623E7A0050C9}|WebApplication1\\WeatherResearcher.csproj|solutionrelative:webapplication1\\controllers\\signincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7A65E09A-1ED7-44AD-BF48-623E7A0050C9}|WebApplication1\\WeatherResearcher.csproj|c:\\users\\artem\\onedrive\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\github\\weatherforresearchers\\webapplication1\\webapplication1\\controllers\\abstractweathershowercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7A65E09A-1ED7-44AD-BF48-623E7A0050C9}|WebApplication1\\WeatherResearcher.csproj|solutionrelative:webapplication1\\controllers\\abstractweathershowercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7A65E09A-1ED7-44AD-BF48-623E7A0050C9}|WebApplication1\\WeatherResearcher.csproj|c:\\users\\artem\\onedrive\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\github\\weatherforresearchers\\webapplication1\\webapplication1\\middlewaretokens\\addingsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7A65E09A-1ED7-44AD-BF48-623E7A0050C9}|WebApplication1\\WeatherResearcher.csproj|solutionrelative:webapplication1\\middlewaretokens\\addingsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7A65E09A-1ED7-44AD-BF48-623E7A0050C9}|WebApplication1\\WeatherResearcher.csproj|c:\\users\\artem\\onedrive\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\github\\weatherforresearchers\\webapplication1\\webapplication1\\controllers\\owncabinetcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7A65E09A-1ED7-44AD-BF48-623E7A0050C9}|WebApplication1\\WeatherResearcher.csproj|C:\\Users\\artem\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\WeatherForResearchers\\WebApplication1\\webapplication1\\controllers\\owncabinetcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7A65E09A-1ED7-44AD-BF48-623E7A0050C9}|WebApplication1\\WeatherResearcher.csproj|solutionrelative:webapplication1\\controllers\\owncabinetcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7A65E09A-1ED7-44AD-BF48-623E7A0050C9}|WebApplication1\\WeatherResearcher.csproj|c:\\users\\artem\\onedrive\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\github\\weatherforresearchers\\webapplication1\\webapplication1\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7A65E09A-1ED7-44AD-BF48-623E7A0050C9}|WebApplication1\\WeatherResearcher.csproj|solutionrelative:webapplication1\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7A65E09A-1ED7-44AD-BF48-623E7A0050C9}|WebApplication1\\WeatherResearcher.csproj|C:\\Users\\artem\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\WeatherForResearchers\\WebApplication1\\webapplication1\\middlewaretokens\\addingcity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7A65E09A-1ED7-44AD-BF48-623E7A0050C9}|WebApplication1\\WeatherResearcher.csproj|solutionrelative:webapplication1\\middlewaretokens\\addingcity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7A65E09A-1ED7-44AD-BF48-623E7A0050C9}|WebApplication1\\WeatherResearcher.csproj|c:\\users\\artem\\onedrive\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\github\\weatherforresearchers\\webapplication1\\webapplication1\\middlewaretokens\\deletingcity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7A65E09A-1ED7-44AD-BF48-623E7A0050C9}|WebApplication1\\WeatherResearcher.csproj|C:\\Users\\artem\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\WeatherForResearchers\\WebApplication1\\webapplication1\\middlewaretokens\\deletingcity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7A65E09A-1ED7-44AD-BF48-623E7A0050C9}|WebApplication1\\WeatherResearcher.csproj|solutionrelative:webapplication1\\middlewaretokens\\deletingcity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7A65E09A-1ED7-44AD-BF48-623E7A0050C9}|WebApplication1\\WeatherResearcher.csproj|c:\\users\\artem\\onedrive\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\github\\weatherforresearchers\\webapplication1\\webapplication1\\middlewaretokens\\deletingsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7A65E09A-1ED7-44AD-BF48-623E7A0050C9}|WebApplication1\\WeatherResearcher.csproj|C:\\Users\\artem\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\WeatherForResearchers\\WebApplication1\\webapplication1\\middlewaretokens\\addingsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7A65E09A-1ED7-44AD-BF48-623E7A0050C9}|WebApplication1\\WeatherResearcher.csproj|solutionrelative:webapplication1\\middlewaretokens\\addingsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7A65E09A-1ED7-44AD-BF48-623E7A0050C9}|WebApplication1\\WeatherResearcher.csproj|C:\\Users\\artem\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\WeatherForResearchers\\WebApplication1\\webapplication1\\middlewaretokens\\deletingsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7A65E09A-1ED7-44AD-BF48-623E7A0050C9}|WebApplication1\\WeatherResearcher.csproj|solutionrelative:webapplication1\\middlewaretokens\\deletingsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7A65E09A-1ED7-44AD-BF48-623E7A0050C9}|WebApplication1\\WeatherResearcher.csproj|C:\\Users\\artem\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\WeatherForResearchers\\WebApplication1\\webapplication1\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7A65E09A-1ED7-44AD-BF48-623E7A0050C9}|WebApplication1\\WeatherResearcher.csproj|solutionrelative:webapplication1\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7A65E09A-1ED7-44AD-BF48-623E7A0050C9}|WebApplication1\\WeatherResearcher.csproj|C:\\Users\\artem\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\WeatherForResearchers\\WebApplication1\\webapplication1\\views\\signin\\authentication.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7A65E09A-1ED7-44AD-BF48-623E7A0050C9}|WebApplication1\\WeatherResearcher.csproj|solutionrelative:webapplication1\\views\\signin\\authentication.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,7 +54,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 381,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -54,52 +62,91 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "OwnCabinetController.cs",
-              "DocumentMoniker": "C:\\Users\\artem\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\WeatherForResearchers\\WebApplication1\\WebApplication1\\Controllers\\OwnCabinetController.cs",
-              "RelativeDocumentMoniker": "WebApplication1\\Controllers\\OwnCabinetController.cs",
-              "ToolTip": "C:\\Users\\artem\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\WeatherForResearchers\\WebApplication1\\WebApplication1\\Controllers\\OwnCabinetController.cs",
-              "RelativeToolTip": "WebApplication1\\Controllers\\OwnCabinetController.cs",
-              "ViewState": "AQIAABsAAAAAAAAAAAAAAB0AAAADAAAA",
+              "DocumentIndex": 0,
+              "Title": "PasswordHandler.cs",
+              "DocumentMoniker": "C:\\Users\\artem\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\WeatherForResearchers\\WebApplication1\\WebApplication1\\Services\\PasswordHandler.cs",
+              "RelativeDocumentMoniker": "WebApplication1\\Services\\PasswordHandler.cs",
+              "ToolTip": "C:\\Users\\artem\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\WeatherForResearchers\\WebApplication1\\WebApplication1\\Services\\PasswordHandler.cs",
+              "RelativeToolTip": "WebApplication1\\Services\\PasswordHandler.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-02T08:11:20.956Z",
+              "WhenOpened": "2024-08-04T14:07:48.209Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ErrorViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\artem\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\WeatherForResearchers\\WebApplication1\\WebApplication1\\Models\\ErrorViewModel.cs",
+              "RelativeDocumentMoniker": "WebApplication1\\Models\\ErrorViewModel.cs",
+              "ToolTip": "C:\\Users\\artem\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\WeatherForResearchers\\WebApplication1\\WebApplication1\\Models\\ErrorViewModel.cs",
+              "RelativeToolTip": "WebApplication1\\Models\\ErrorViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-04T11:44:04.557Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "SignInController.cs",
-              "DocumentMoniker": "C:\\Users\\artem\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\WeatherForResearchers\\WebApplication1\\WebApplication1\\Controllers\\SignInController.cs",
-              "RelativeDocumentMoniker": "WebApplication1\\Controllers\\SignInController.cs",
-              "ToolTip": "C:\\Users\\artem\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\WeatherForResearchers\\WebApplication1\\WebApplication1\\Controllers\\SignInController.cs",
-              "RelativeToolTip": "WebApplication1\\Controllers\\SignInController.cs",
-              "ViewState": "AQIAADwAAAAAAAAAAAAAAE4AAAAAAAAA",
+              "Title": "AbstractWeatherShowerController.cs",
+              "DocumentMoniker": "C:\\Users\\artem\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\WeatherForResearchers\\WebApplication1\\WebApplication1\\Controllers\\AbstractWeatherShowerController.cs",
+              "RelativeDocumentMoniker": "WebApplication1\\Controllers\\AbstractWeatherShowerController.cs",
+              "ToolTip": "C:\\Users\\artem\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\WeatherForResearchers\\WebApplication1\\WebApplication1\\Controllers\\AbstractWeatherShowerController.cs",
+              "RelativeToolTip": "WebApplication1\\Controllers\\AbstractWeatherShowerController.cs",
+              "ViewState": "AQIAAGkAAAAAAAAAAAAcwHkAAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-02T07:17:13.209Z",
+              "WhenOpened": "2024-08-04T11:12:29.37Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\artem\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\WeatherForResearchers\\WebApplication1\\WebApplication1\\Program.cs",
+              "RelativeDocumentMoniker": "WebApplication1\\Program.cs",
+              "ToolTip": "C:\\Users\\artem\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\WeatherForResearchers\\WebApplication1\\WebApplication1\\Program.cs",
+              "RelativeToolTip": "WebApplication1\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-03T11:54:14.77Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "OwnCabinetController.cs",
+              "DocumentMoniker": "C:\\Users\\artem\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\WeatherForResearchers\\WebApplication1\\WebApplication1\\Controllers\\OwnCabinetController.cs",
+              "RelativeDocumentMoniker": "WebApplication1\\Controllers\\OwnCabinetController.cs",
+              "ToolTip": "C:\\Users\\artem\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\WeatherForResearchers\\WebApplication1\\WebApplication1\\Controllers\\OwnCabinetController.cs",
+              "RelativeToolTip": "WebApplication1\\Controllers\\OwnCabinetController.cs",
+              "ViewState": "AQIAAKIAAAAAAAAAAAAgwDYAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-02T17:07:33.566Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "HomeController.cs",
               "DocumentMoniker": "C:\\Users\\artem\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\WeatherForResearchers\\WebApplication1\\WebApplication1\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "WebApplication1\\Controllers\\HomeController.cs",
               "ToolTip": "C:\\Users\\artem\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\WeatherForResearchers\\WebApplication1\\WebApplication1\\Controllers\\HomeController.cs",
               "RelativeToolTip": "WebApplication1\\Controllers\\HomeController.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAABwAAAADAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACQAAAAWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-02T07:42:12.669Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 6,
               "Title": "DeletingCity.cs",
               "DocumentMoniker": "C:\\Users\\artem\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\WeatherForResearchers\\WebApplication1\\WebApplication1\\MiddlewareTokens\\DeletingCity.cs",
               "RelativeDocumentMoniker": "WebApplication1\\MiddlewareTokens\\DeletingCity.cs",
               "ToolTip": "C:\\Users\\artem\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\WeatherForResearchers\\WebApplication1\\WebApplication1\\MiddlewareTokens\\DeletingCity.cs",
               "RelativeToolTip": "WebApplication1\\MiddlewareTokens\\DeletingCity.cs",
-              "ViewState": "AQIAABUAAAAAAAAAAAAAACUAAAAcAAAA",
+              "ViewState": "AQIAACwAAAAAAAAAAAAswEAAAAACAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-02T07:11:36.829Z",
               "EditorCaption": ""
@@ -112,59 +159,46 @@
               "RelativeDocumentMoniker": "WebApplication1\\MiddlewareTokens\\DeletingSnapshot.cs",
               "ToolTip": "C:\\Users\\artem\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\WeatherForResearchers\\WebApplication1\\WebApplication1\\MiddlewareTokens\\DeletingSnapshot.cs",
               "RelativeToolTip": "WebApplication1\\MiddlewareTokens\\DeletingSnapshot.cs",
-              "ViewState": "AQIAAA8AAAAAAAAAAAAAABoAAAADAAAA",
+              "ViewState": "AQIAABgAAAAAAAAAAAAAADoAAAACAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-02T07:11:37.323Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "AddingSnapshot.cs",
               "DocumentMoniker": "C:\\Users\\artem\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\WeatherForResearchers\\WebApplication1\\WebApplication1\\MiddlewareTokens\\AddingSnapshot.cs",
               "RelativeDocumentMoniker": "WebApplication1\\MiddlewareTokens\\AddingSnapshot.cs",
               "ToolTip": "C:\\Users\\artem\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\WeatherForResearchers\\WebApplication1\\WebApplication1\\MiddlewareTokens\\AddingSnapshot.cs",
               "RelativeToolTip": "WebApplication1\\MiddlewareTokens\\AddingSnapshot.cs",
-              "ViewState": "AQIAABUAAAAAAAAAAAAAAB8AAAA/AAAA",
+              "ViewState": "AQIAACQAAAAAAAAAAAAAAEYAAAACAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-02T07:11:36.169Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "AddingCity.cs",
               "DocumentMoniker": "C:\\Users\\artem\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\WeatherForResearchers\\WebApplication1\\WebApplication1\\MiddlewareTokens\\AddingCity.cs",
               "RelativeDocumentMoniker": "WebApplication1\\MiddlewareTokens\\AddingCity.cs",
               "ToolTip": "C:\\Users\\artem\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\WeatherForResearchers\\WebApplication1\\WebApplication1\\MiddlewareTokens\\AddingCity.cs",
               "RelativeToolTip": "WebApplication1\\MiddlewareTokens\\AddingCity.cs",
-              "ViewState": "AQIAAA8AAAAAAAAAAAAAAB4AAAA/AAAA",
+              "ViewState": "AQIAACUAAAAAAAAAAAAswDkAAAACAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-02T07:11:51.371Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Registration.cshtml",
-              "DocumentMoniker": "C:\\Users\\artem\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\WeatherForResearchers\\WebApplication1\\WebApplication1\\Views\\SignIn\\Registration.cshtml",
-              "RelativeDocumentMoniker": "WebApplication1\\Views\\SignIn\\Registration.cshtml",
-              "ToolTip": "C:\\Users\\artem\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\WeatherForResearchers\\WebApplication1\\WebApplication1\\Views\\SignIn\\Registration.cshtml",
-              "RelativeToolTip": "WebApplication1\\Views\\SignIn\\Registration.cshtml",
-              "ViewState": "AQIAAB4AAAAAAAAAAAAAADQAAAArAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-07-31T14:25:12.63Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 10,
               "Title": "Authentication.cshtml",
               "DocumentMoniker": "C:\\Users\\artem\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\WeatherForResearchers\\WebApplication1\\WebApplication1\\Views\\SignIn\\Authentication.cshtml",
               "RelativeDocumentMoniker": "WebApplication1\\Views\\SignIn\\Authentication.cshtml",
               "ToolTip": "C:\\Users\\artem\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\WeatherForResearchers\\WebApplication1\\WebApplication1\\Views\\SignIn\\Authentication.cshtml",
               "RelativeToolTip": "WebApplication1\\Views\\SignIn\\Authentication.cshtml",
-              "ViewState": "AQIAAB4AAAAAAAAAAAAAACgAAAAYAAAA",
+              "ViewState": "AQIAACcAAAAAAAAAAAAAACgAAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-08-01T12:07:53.27Z",
               "EditorCaption": ""

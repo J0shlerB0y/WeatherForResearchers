@@ -47,9 +47,13 @@ namespace WeatherResearcher.Controllers
 			}
 			else
 			{
+				var cookiesToDelete = HttpContext.Response.Cookies;
+				cookiesToDelete.Delete("Login");
+				cookiesToDelete.Delete("Password");
+				isLogedIn = false;
 				foreach (var cooke in cookies.ToList())
 				{
-					if (cooke.Key != "Login")
+					if (cooke.Key != "Login" && cooke.Key != " Login" && cooke.Key != "Password" && cooke.Key != " Password")
 					{
 						citiesAndCountries = citiesAndCountries.Append<CityAndCountry>(db.citiesAndCountries.FirstOrDefault(x => x.Id.ToString() == cooke.Value));
 					}

@@ -59,6 +59,13 @@ namespace WeatherResearcher.MiddlewareTokens
 						db.SaveChanges();
 					}
 				}
+				else
+				{
+					var cookiesToDelete = context.Response.Cookies;
+					cookiesToDelete.Delete("Login");
+					cookiesToDelete.Delete("Password");
+					context.Response.StatusCode = 401;
+				}
 			}
 			await next.Invoke(context);
 		}

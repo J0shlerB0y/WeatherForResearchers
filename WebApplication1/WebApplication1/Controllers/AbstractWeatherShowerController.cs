@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 using System.Diagnostics;
+using System.IO;
 using System.Net;
 using System.Text;
 using WeatherResearcher.Models;
@@ -109,14 +110,29 @@ namespace WeatherResearcher.Controllers
 
 			return View(forIndexViewModel);
 		}
-		public IActionResult Privacy()
+		public IActionResult Error(int statusCode = 200)
 		{
-			return View();
-		}
-
-		public IActionResult Error()
-		{
-			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+			string errorMessange = "";
+			if (statusCode == 401)
+			{
+				errorMessange = "Unauthorized";
+			}
+			else if (statusCode == 404)
+			{
+				errorMessange = "Not Found";
+			}
+			else if (statusCode == 408)
+			{
+				errorMessange = "Request Timeout";
+			}
+			else if (statusCode == 500)
+			{
+				errorMessange = "Internal Server Error";
+			}else if (statusCode == 310)
+			{
+				errorMessange = "Too Many Redirects";
+			}
+			return View(new ErrorViewModel { StatusCode = statusCode, ErrorMessage = errorMessange });
 		}
 		protected WeatherModel GetWeather(CityAndCountry cityAndCountryToFindWeather, int page = 0)
 		{
@@ -161,9 +177,9 @@ namespace WeatherResearcher.Controllers
 			}
 			catch
 			{
-				db.citiesAndCountries.Remove(cityAndCountryToFindWeather);
-				pageCitiesAndCountriesQueue.Enqueue(citiesAndCountries.Skip(page * pageSize + pageSize).FirstOrDefault());
-				db.SaveChanges();
+				//db.citiesAndCountries.Remove(cityAndCountryToFindWeather);
+				//pageCitiesAndCountriesQueue.Enqueue(citiesAndCountries.Skip(page * pageSize + pageSize).FirstOrDefault());
+				//db.SaveChanges();
 				return null;
 			}
 			return outputWeather;
