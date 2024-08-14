@@ -22,8 +22,8 @@ namespace WeatherResearcher.Controllers
 			FilterViewModel filter = null,
 			SortingEnum sortingState = SortingEnum.CityAsc)
 		{
-			//Logining
-			var cookies = HttpContext.Request.Cookies;
+            //Logining
+            var cookies = HttpContext.Request.Cookies;
 			if (cookies["Login"] != null && cookies["Password"] != null && !db.users.Where(x => x.Login
 							== cookies["Login"] && passwordHandler.DecryptString(cookies["Password"]) == x.Password).IsNullOrEmpty())
 			{
@@ -36,7 +36,7 @@ namespace WeatherResearcher.Controllers
 				cookiesToDelete.Delete("Password");
 				isLogedIn = false;
 			}
-			citiesAndCountries = db.citiesAndCountries;
+			citiesAndCountries = db.citiesandcountries;
 
 			return await PostWeather(page, filter, sortingState);
 		}

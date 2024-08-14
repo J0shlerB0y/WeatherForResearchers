@@ -1,0 +1,36 @@
+version: '3.8'
+
+networks:
+  webapplication1_default: 
+    driver: bridge
+    attachable: true
+    name: webapplication1_default
+services:
+  web:
+    build: .
+    ports:
+      - "8080:8080"
+    restart: always 
+    depends_on:
+      - db
+    links:
+      - "db:localhost"
+    networks:
+      - webapplication1_default
+
+  db:
+    image: mysql:9.0.1
+    environment:      
+      MYSQL_ROOT_PASSWORD: localroot1289host
+      MYSQL_DATABASE: weather_researcher
+      MYSQL_PASSWORD: localroot1289host
+    
+    volumes:
+      - datadir:/var/lib/mysql
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    ports:
+      - "3306:3306"
+    networks:
+      - webapplication1_default
+volumes:
+  datadir:

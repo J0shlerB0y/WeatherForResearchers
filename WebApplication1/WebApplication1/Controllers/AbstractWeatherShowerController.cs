@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Linq;
 using System.Diagnostics;
 using System.IO;
@@ -15,9 +16,9 @@ namespace WeatherResearcher.Controllers
 		protected ApplicationContext db;
 		protected int count;
 		protected int pageSize = 12;
-		protected List<CityAndCountry> pageCitiesAndCountriesList;
-		protected Queue<CityAndCountry> pageCitiesAndCountriesQueue;
-		protected IQueryable<CityAndCountry> citiesAndCountries;
+		protected List<CitiesAndCountries> pageCitiesAndCountriesList;
+		protected Queue<CitiesAndCountries> pageCitiesAndCountriesQueue;
+		protected IQueryable<CitiesAndCountries> citiesAndCountries;
 		protected List<WeatherModel> WeatherForView;
 		protected bool isLogedIn = false;
 
@@ -56,13 +57,13 @@ namespace WeatherResearcher.Controllers
 		{
 			count = citiesAndCountries.Count();
 			pageCitiesAndCountriesList = citiesAndCountries.Skip(page * pageSize).Take(pageSize).ToList();
-			pageCitiesAndCountriesQueue = new Queue<CityAndCountry>(pageCitiesAndCountriesList);
+			pageCitiesAndCountriesQueue = new Queue<CitiesAndCountries>(pageCitiesAndCountriesList);
 		}
 
 		protected void findingWeather(int page = 0)
 		{
 			WeatherForView = new List<WeatherModel>();
-			while (WeatherForView.Count < pageSize)
+			while (WeatherForView.Count < pageSize && !pageCitiesAndCountriesQueue.IsNullOrEmpty())
 			{
 				WeatherModel tempWeatherModel = GetWeather(pageCitiesAndCountriesQueue.Dequeue(), page);
 				if (tempWeatherModel != null)
@@ -134,7 +135,7 @@ namespace WeatherResearcher.Controllers
 			}
 			return View(new ErrorViewModel { StatusCode = statusCode, ErrorMessage = errorMessange });
 		}
-		protected WeatherModel GetWeather(CityAndCountry cityAndCountryToFindWeather, int page = 0)
+		protected WeatherModel GetWeather(CitiesAndCountries cityAndCountryToFindWeather, int page = 0)
 		{
 			string cityToFindWeather = cityAndCountryToFindWeather.CityTitle_en;
 			HttpWebRequest request =

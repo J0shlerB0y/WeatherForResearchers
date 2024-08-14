@@ -22,7 +22,7 @@ namespace WeatherResearcher.Controllers
 			FilterViewModel filter = null,
 			SortingEnum sortingState = SortingEnum.CityAsc)
 		{
-			citiesAndCountries = Enumerable.Empty<CityAndCountry>().AsQueryable();
+			citiesAndCountries = Enumerable.Empty<CitiesAndCountries>().AsQueryable();
 			//fetching and recycling cookies
 
 			var cookies = HttpContext.Request.Cookies;
@@ -38,11 +38,11 @@ namespace WeatherResearcher.Controllers
 					x => x.UserId,
 					y => y.Id,
 					(x, y) => x.CityId
-					).Join(db.citiesAndCountries,
+					).Join(db.citiesandcountries,
 					x => x,
 					y => y.Id,
 					(x, y) => 
-					new CityAndCountry { Id = x, CityTitle_en = y.CityTitle_en, CountryTitle_en = y.CountryTitle_en }
+					new CitiesAndCountries { Id = x, CityTitle_en = y.CityTitle_en, CountryTitle_en = y.CountryTitle_en }
 					);
 			}
 			else
@@ -55,7 +55,7 @@ namespace WeatherResearcher.Controllers
 				{
 					if (cooke.Key != "Login" && cooke.Key != " Login" && cooke.Key != "Password" && cooke.Key != " Password")
 					{
-						citiesAndCountries = citiesAndCountries.Append<CityAndCountry>(db.citiesAndCountries.FirstOrDefault(x => x.Id.ToString() == cooke.Value));
+						citiesAndCountries = citiesAndCountries.Append<CitiesAndCountries>(db.citiesandcountries.FirstOrDefault(x => x.Id.ToString() == cooke.Value));
 					}
 				}
 			}
@@ -87,7 +87,7 @@ namespace WeatherResearcher.Controllers
 					(x, y) => new { x.CityId, x.weather, x.icon, 
 						x.temp, x.temp_feels_like, x.temp_min, x.temp_max, 
 						x.pressure, x.humidity, x.wind_speed, x.Id, x.Time}
-					).Join(db.citiesAndCountries,
+					).Join(db.citiesandcountries,
 					x => x.CityId,
 					y => y.Id,
 					(x, y) =>

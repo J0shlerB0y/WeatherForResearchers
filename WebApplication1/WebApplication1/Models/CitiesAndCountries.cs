@@ -2,7 +2,7 @@
 
 namespace WeatherResearcher.Models
 {
-    public class CityAndCountry
+    public class CitiesAndCountries
     {
         [Key]
         public int Id { get; set; } = 0;

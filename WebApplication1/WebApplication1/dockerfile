@@ -1,0 +1,17 @@
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /app
+
+COPY WeatherResearcher.csproj ./
+RUN dotnet restore
+
+COPY . ./
+
+RUN dotnet publish -c release -o out
+
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
+WORKDIR /app
+
+COPY --from=build /app/out /app
+COPY ./bin/Release/net8.0/WeatherResearcher.dll /app
+
+ENTRYPOINT ["dotnet", "WeatherResearcher.dll"]
