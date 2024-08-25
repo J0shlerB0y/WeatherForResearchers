@@ -15,8 +15,10 @@ namespace WeatherResearcher.Services
 		}
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySql(@"Server=webapplication1-db-1;Port=3306;Database=weather_researcher;Uid=root;Pwd=localroot1289host;",
+            optionsBuilder.UseMySql(@"Server=localhost;Port=3306;Database=weather_researcher;Uid=root;Pwd=localroot1289host;",
                 new MySqlServerVersion(new Version(9, 0, 1)),
+            //optionsBuilder.UseMySql(@"Server=webapplication1-db-1;Port=3306;Database=weather_researcher;Uid=root;Pwd=localroot1289host;",
+            //    new MySqlServerVersion(new Version(9, 0, 1)),
         mySqlOptions =>
         {
             mySqlOptions.EnableRetryOnFailure(

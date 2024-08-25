@@ -77,6 +77,8 @@
 						asp-route-city="@(Model.filter.City)" asp-route-country="@(Model.filter.Country)">Country
 						Descending</a>
 					<hr>
+					@if (Model is not null)
+					{
 					<!-- First -->
 					<div class="row">
 
@@ -124,6 +126,7 @@
 						}
 
 					</div>
+					}
 					<footer>
 						<ul class="actions">
 							@if (Model.pageViewModel.HasPreviousPage())

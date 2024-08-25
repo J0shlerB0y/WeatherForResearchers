@@ -65,10 +65,15 @@ namespace WeatherResearcher.Controllers
 			WeatherForView = new List<WeatherModel>();
 			while (WeatherForView.Count < pageSize && !pageCitiesAndCountriesQueue.IsNullOrEmpty())
 			{
-				WeatherModel tempWeatherModel = GetWeather(pageCitiesAndCountriesQueue.Dequeue(), page);
+				var cityToCheckWeather = pageCitiesAndCountriesQueue.Dequeue();
+				WeatherModel tempWeatherModel = GetWeather(cityToCheckWeather, page);
 				if (tempWeatherModel != null)
 				{
 					WeatherForView.Add(tempWeatherModel);
+				}
+				else
+				{
+					pageCitiesAndCountriesList.Remove(cityToCheckWeather);
 				}
 			}
 		}
