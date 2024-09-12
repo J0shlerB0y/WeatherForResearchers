@@ -72,6 +72,7 @@ namespace WeatherResearcher.Controllers
 			filter.BottomWeather = bottomWeather;
 
 			IQueryable<SnapshotWithCityModel> snapshotsWithCitiesAndCountries = Enumerable.Empty<SnapshotWithCityModel>().AsQueryable();
+
 			//fetching and recycling cookies
 
 			var cookies = HttpContext.Request.Cookies;
@@ -103,85 +104,30 @@ namespace WeatherResearcher.Controllers
 			{
 				RedirectToAction("Authentication", "SignIn");
 			}
-			//filtration
-			if (!String.IsNullOrEmpty(filter.City))
-			{
-				snapshotsWithCitiesAndCountries = snapshotsWithCitiesAndCountries.Where(c => filter.City == c.CityTitle_en);
-			}
-			if (!String.IsNullOrEmpty(filter.Country))
-			{
-				snapshotsWithCitiesAndCountries = snapshotsWithCitiesAndCountries.Where(c => filter.Country == c.CountryTitle_en || filter.Country == c.CountryTitle_en);
-			}
+			snapshotsWithCitiesAndCountries = snapshotsWithCitiesAndCountries.Where(c =>
+				(String.IsNullOrEmpty(filter.City) || filter.City == c.CityTitle_en) &&
+				(String.IsNullOrEmpty(filter.Country) || filter.Country == c.CountryTitle_en) &&
 
-			if (filter.TopWeather.Time is not null)
-			{
-				snapshotsWithCitiesAndCountries = snapshotsWithCitiesAndCountries.Where(c => filter.TopWeather.Time <= c.Time);
-			}
-			if (filter.TopWeather.weather != "")
-			{
-				snapshotsWithCitiesAndCountries = snapshotsWithCitiesAndCountries.Where(c => filter.TopWeather.weather == c.weather);
-			}
-			if (filter.TopWeather.temp is not null)
-			{
-				snapshotsWithCitiesAndCountries = snapshotsWithCitiesAndCountries.Where(c => filter.TopWeather.temp <= c.temp);
-			}
-			if (filter.TopWeather.temp_feels_like is not null)
-			{
-				snapshotsWithCitiesAndCountries = snapshotsWithCitiesAndCountries.Where(c => filter.TopWeather.temp_feels_like <= c.temp_feels_like);
-			}
-			if (filter.TopWeather.temp_min is not null)
-			{
-				snapshotsWithCitiesAndCountries = snapshotsWithCitiesAndCountries.Where(c => filter.TopWeather.temp_min <= c.temp_min);
-			}
-			if (filter.TopWeather.temp_max is not null)
-			{
-				snapshotsWithCitiesAndCountries = snapshotsWithCitiesAndCountries.Where(c => filter.TopWeather.temp_max <= c.temp_max);
-			}
-			if (filter.TopWeather.pressure is not null)
-			{
-				snapshotsWithCitiesAndCountries = snapshotsWithCitiesAndCountries.Where(c => filter.TopWeather.pressure <= c.pressure);
-			}
-			if (filter.TopWeather.humidity is not null)
-			{
-				snapshotsWithCitiesAndCountries = snapshotsWithCitiesAndCountries.Where(c => filter.TopWeather.humidity <= c.humidity);
-			}
-			if (filter.TopWeather.wind_speed is not null)
-			{
-				snapshotsWithCitiesAndCountries = snapshotsWithCitiesAndCountries.Where(c => filter.TopWeather.wind_speed <= c.wind_speed);
-			}
+				(filter.TopWeather.weather == "" || filter.TopWeather.weather == c.weather) &&
 
-			if (filter.BottomWeather.Time is not null)
-			{
-				snapshotsWithCitiesAndCountries = snapshotsWithCitiesAndCountries.Where(c => filter.BottomWeather.Time >= c.Time);
-			}
-			if (filter.BottomWeather.temp is not null)
-			{
-				snapshotsWithCitiesAndCountries = snapshotsWithCitiesAndCountries.Where(c => filter.BottomWeather.temp >= c.temp);
-			}
-			if (filter.BottomWeather.temp_feels_like is not null)
-			{
-				snapshotsWithCitiesAndCountries = snapshotsWithCitiesAndCountries.Where(c => filter.BottomWeather.temp_feels_like >= c.temp_feels_like);
-			}
-			if (filter.BottomWeather.temp_min is not null)
-			{
-				snapshotsWithCitiesAndCountries = snapshotsWithCitiesAndCountries.Where(c => filter.BottomWeather.temp_min >= c.temp_min);
-			}
-			if (filter.BottomWeather.temp_max is not null)
-			{
-				snapshotsWithCitiesAndCountries = snapshotsWithCitiesAndCountries.Where(c => filter.BottomWeather.temp_max >= c.temp_max);
-			}
-			if (filter.BottomWeather.pressure is not null)
-			{
-				snapshotsWithCitiesAndCountries = snapshotsWithCitiesAndCountries.Where(c => filter.BottomWeather.pressure >= c.pressure);
-			}
-			if (filter.BottomWeather.humidity is not null)
-			{
-				snapshotsWithCitiesAndCountries = snapshotsWithCitiesAndCountries.Where(c => filter.BottomWeather.humidity >= c.humidity);
-			}
-			if (filter.BottomWeather.wind_speed is not null)
-			{
-				snapshotsWithCitiesAndCountries = snapshotsWithCitiesAndCountries.Where(c => filter.BottomWeather.wind_speed >= c.wind_speed);
-			}
+				(filter.TopWeather.Time == null || filter.TopWeather.Time <= c.Time) &&
+				(filter.TopWeather.temp == null || filter.TopWeather.temp <= c.temp) &&
+				(filter.TopWeather.temp_feels_like == null || filter.TopWeather.temp_feels_like <= c.temp_feels_like) &&
+				(filter.TopWeather.temp_min == null || filter.TopWeather.temp_min <= c.temp_min) &&
+				(filter.TopWeather.temp_max == null || filter.TopWeather.temp_max <= c.temp_max) &&
+				(filter.TopWeather.pressure == null || filter.TopWeather.pressure <= c.pressure) &&
+				(filter.TopWeather.humidity == null || filter.TopWeather.humidity <= c.humidity) &&
+				(filter.TopWeather.wind_speed == null || filter.TopWeather.wind_speed <= c.wind_speed) &&
+
+				(filter.BottomWeather.Time == null || filter.BottomWeather.Time >= c.Time) &&
+				(filter.BottomWeather.temp == null || filter.BottomWeather.temp >= c.temp) &&
+				(filter.BottomWeather.temp_feels_like == null || filter.BottomWeather.temp_feels_like >= c.temp_feels_like) &&
+				(filter.BottomWeather.temp_min == null || filter.BottomWeather.temp_min >= c.temp_min) &&
+				(filter.BottomWeather.temp_max == null || filter.BottomWeather.temp_max >= c.temp_max) &&
+				(filter.BottomWeather.pressure == null || filter.BottomWeather.pressure >= c.pressure) &&
+				(filter.BottomWeather.humidity == null || filter.BottomWeather.humidity >= c.humidity) &&
+				(filter.BottomWeather.wind_speed == null || filter.BottomWeather.wind_speed >= c.wind_speed)
+			);
 
 
 
