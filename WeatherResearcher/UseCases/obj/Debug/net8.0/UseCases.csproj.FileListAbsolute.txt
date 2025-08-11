@@ -1,0 +1,16 @@
+C:\Users\artem\OneDrive\Документы\GitHub\WeatherResearcher\WeatherResearcher\UseCases\obj\Debug\net8.0\UseCases.csproj.AssemblyReference.cache
+C:\Users\artem\OneDrive\Документы\GitHub\WeatherResearcher\WeatherResearcher\UseCases\obj\Debug\net8.0\UseCases.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\artem\OneDrive\Документы\GitHub\WeatherResearcher\WeatherResearcher\UseCases\obj\Debug\net8.0\UseCases.AssemblyInfoInputs.cache
+C:\Users\artem\OneDrive\Документы\GitHub\WeatherResearcher\WeatherResearcher\UseCases\obj\Debug\net8.0\UseCases.AssemblyInfo.cs
+C:\Users\artem\OneDrive\Документы\GitHub\WeatherResearcher\WeatherResearcher\UseCases\obj\Debug\net8.0\UseCases.csproj.CoreCompileInputs.cache
+C:\Users\artem\OneDrive\Документы\GitHub\WeatherResearcher\WeatherResearcher\UseCases\obj\Debug\net8.0\UseCases.sourcelink.json
+C:\Users\artem\OneDrive\Документы\GitHub\WeatherResearcher\WeatherResearcher\UseCases\bin\Debug\net8.0\UseCases.deps.json
+C:\Users\artem\OneDrive\Документы\GitHub\WeatherResearcher\WeatherResearcher\UseCases\bin\Debug\net8.0\UseCases.dll
+C:\Users\artem\OneDrive\Документы\GitHub\WeatherResearcher\WeatherResearcher\UseCases\bin\Debug\net8.0\UseCases.pdb
+C:\Users\artem\OneDrive\Документы\GitHub\WeatherResearcher\WeatherResearcher\UseCases\bin\Debug\net8.0\Domain.dll
+C:\Users\artem\OneDrive\Документы\GitHub\WeatherResearcher\WeatherResearcher\UseCases\bin\Debug\net8.0\Domain.pdb
+C:\Users\artem\OneDrive\Документы\GitHub\WeatherResearcher\WeatherResearcher\UseCases\obj\Debug\net8.0\UseCases.csproj.Up2Date
+C:\Users\artem\OneDrive\Документы\GitHub\WeatherResearcher\WeatherResearcher\UseCases\obj\Debug\net8.0\UseCases.dll
+C:\Users\artem\OneDrive\Документы\GitHub\WeatherResearcher\WeatherResearcher\UseCases\obj\Debug\net8.0\refint\UseCases.dll
+C:\Users\artem\OneDrive\Документы\GitHub\WeatherResearcher\WeatherResearcher\UseCases\obj\Debug\net8.0\UseCases.pdb
+C:\Users\artem\OneDrive\Документы\GitHub\WeatherResearcher\WeatherResearcher\UseCases\obj\Debug\net8.0\ref\UseCases.dll

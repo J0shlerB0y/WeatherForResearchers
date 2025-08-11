@@ -1,0 +1,256 @@
+﻿@using Infrastructure.Models
+@using Domain
+@model ViewModel<Snapshot, FilterSnapshotParametr>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@functions {
+	public Dictionary<string, string> GetRouteData(FilterSnapshotParametr filter)
+	{
+		var routeData = new Dictionary<string, string>();
+		if (filter == null) return routeData;
+
+		// Базовые фильтры
+		if (!string.IsNullOrEmpty(filter.City)) routeData["filter.City"] = filter.City;
+		if (!string.IsNullOrEmpty(filter.Country)) routeData["filter.Country"] = filter.Country;
+
+		// --- Фильтры TopWeather (From) ---
+		if (filter.TopWeather?.Time.HasValue == true) routeData["filter.TopWeather.Time"] = filter.TopWeather.Time.Value.ToString("yyyy-MM-ddTHH:mm");
+		if (filter.TopWeather?.temp.HasValue == true) routeData["filter.TopWeather.temp"] = filter.TopWeather.temp.Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+		if (filter.TopWeather?.temp_feels_like.HasValue == true) routeData["filter.TopWeather.temp_feels_like"] = filter.TopWeather.temp_feels_like.Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+		if (filter.TopWeather?.temp_min.HasValue == true) routeData["filter.TopWeather.temp_min"] = filter.TopWeather.temp_min.Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+		if (filter.TopWeather?.temp_max.HasValue == true) routeData["filter.TopWeather.temp_max"] = filter.TopWeather.temp_max.Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+		if (filter.TopWeather?.pressure.HasValue == true) routeData["filter.TopWeather.pressure"] = filter.TopWeather.pressure.Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+		if (filter.TopWeather?.humidity.HasValue == true) routeData["filter.TopWeather.humidity"] = filter.TopWeather.humidity.Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+		if (filter.TopWeather?.wind_speed.HasValue == true) routeData["filter.TopWeather.wind_speed"] = filter.TopWeather.wind_speed.Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+
+		// --- Фильтры BottomWeather (To) ---
+		if (filter.BottomWeather?.Time.HasValue == true) routeData["filter.BottomWeather.Time"] = filter.BottomWeather.Time.Value.ToString("yyyy-MM-ddTHH:mm");
+		if (filter.BottomWeather?.temp.HasValue == true) routeData["filter.BottomWeather.temp"] = filter.BottomWeather.temp.Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+		if (filter.BottomWeather?.temp_feels_like.HasValue == true) routeData["filter.BottomWeather.temp_feels_like"] = filter.BottomWeather.temp_feels_like.Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+		if (filter.BottomWeather?.temp_min.HasValue == true) routeData["filter.BottomWeather.temp_min"] = filter.BottomWeather.temp_min.Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+		if (filter.BottomWeather?.temp_max.HasValue == true) routeData["filter.BottomWeather.temp_max"] = filter.BottomWeather.temp_max.Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+		if (filter.BottomWeather?.pressure.HasValue == true) routeData["filter.BottomWeather.pressure"] = filter.BottomWeather.pressure.Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+		if (filter.BottomWeather?.humidity.HasValue == true) routeData["filter.BottomWeather.humidity"] = filter.BottomWeather.humidity.Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+		if (filter.BottomWeather?.wind_speed.HasValue == true) routeData["filter.BottomWeather.wind_speed"] = filter.BottomWeather.wind_speed.Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+
+		return routeData;
+	}
+}
+
+<!-- Main -->
+<section id="main">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<section>
+					<header class="major">
+						<h2>Filtration</h2>
+					</header>
+					<div class="filter-container">
+						<button class="filter-toggle">Filter Options</button>
+						<div class="filter-content">
+							<form method="get">
+								<header>
+									<h3>City: </h3>
+									<input asp-for="filter.City" class="form-control" />
+									<br />
+									<h3>Country: </h3>
+									<input asp-for="filter.Country" class="form-control" />
+									<br />
+
+									<h3 class="form-header">Time: </h3>
+									<div class="filtr-form-from-to">
+										<label asp-for="filter.TopWeather.Time">From:</label>
+										<input asp-for="filter.TopWeather.Time" class="form-control" />
+
+										<label asp-for="filter.BottomWeather.Time">To:</label>
+										<input asp-for="filter.BottomWeather.Time" class="form-control" />
+									</div>
+
+									<h3 class="form-header">Temp: </h3>
+									<div class="filtr-form-from-to">
+										<label asp-for="filter.TopWeather.temp">From:</label>
+										<input asp-for="filter.TopWeather.temp" class="form-control" />
+
+										<label asp-for="filter.BottomWeather.temp">To:</label>
+										<input asp-for="filter.BottomWeather.temp" class="form-control" />
+									</div>
+
+									<h3 class="form-header">Temp feels like: </h3>
+									<div class="filtr-form-from-to">
+										<label asp-for="filter.TopWeather.temp_feels_like">From:</label>
+										<input asp-for="filter.TopWeather.temp_feels_like" class="form-control" />
+
+										<label asp-for="filter.BottomWeather.temp_feels_like">To:</label>
+										<input asp-for="filter.BottomWeather.temp_feels_like" class="form-control" />
+									</div>
+
+									<h3 class="form-header">Temp Min: </h3>
+									<div class="filtr-form-from-to">
+										<label asp-for="filter.TopWeather.temp_min">From:</label>
+										<input asp-for="filter.TopWeather.temp_min" class="form-control" />
+
+										<label asp-for="filter.BottomWeather.temp_min">To:</label>
+										<input asp-for="filter.BottomWeather.temp_min" class="form-control" />
+									</div>
+
+									<h3 class="form-header">Temp Max: </h3>
+									<div class="filtr-form-from-to">
+										<label asp-for="filter.TopWeather.temp_max">From:</label>
+										<input asp-for="filter.TopWeather.temp_max" class="form-control" />
+
+										<label asp-for="filter.BottomWeather.temp_max">To:</label>
+										<input asp-for="filter.BottomWeather.temp_max" class="form-control" />
+									</div>
+
+									<h3 class="form-header">Pressure: </h3>
+									<div class="filtr-form-from-to">
+										<label asp-for="filter.TopWeather.pressure">From:</label>
+										<input asp-for="filter.TopWeather.pressure" class="form-control" />
+
+										<label asp-for="filter.BottomWeather.pressure">To:</label>
+										<input asp-for="filter.BottomWeather.pressure" class="form-control" />
+									</div>
+
+									<h3 class="form-header">Humidity: </h3>
+									<div class="filtr-form-from-to">
+										<label asp-for="filter.TopWeather.humidity">From:</label>
+										<input asp-for="filter.TopWeather.humidity" class="form-control" />
+
+										<label asp-for="filter.BottomWeather.humidity">To:</label>
+										<input asp-for="filter.BottomWeather.humidity" class="form-control" />
+									</div>
+
+									<h3 class="form-header">Wind speed: </h3>
+									<div class="filtr-form-from-to">
+										<label asp-for="filter.TopWeather.wind_speed">From:</label>
+										<input asp-for="filter.TopWeather.wind_speed" class="form-control" />
+
+										<label asp-for="filter.BottomWeather.wind_speed">To:</label>
+										<input asp-for="filter.BottomWeather.wind_speed" class="form-control" />
+									</div>
+								</header>
+								<footer>
+									<ul class="actions">
+										<input type="submit" value="Filtrate" class="button alt" />
+									</ul>
+								</footer>
+							</form>
+						</div>
+					</div>
+
+					<script>
+
+						const toggleButton = document.querySelector('.filter-toggle');
+						const filterContent = document.querySelector('.filter-content');
+
+						toggleButton.addEventListener('click', () => {
+							filterContent.classList.toggle('active');
+						});
+					</script>
+					<header class="major">
+						<h2>Sort by</h2>
+					</header>
+					<!-- City & Country -->
+					<a asp-action="OwnSnapshots" asp-all-route-data="@GetRouteData(Model.filter)" asp-route-sortingState="@SortingEnum.CityAsc">City Ascending</a>&nbsp;&nbsp;
+					<a asp-action="OwnSnapshots" asp-all-route-data="@GetRouteData(Model.filter)" asp-route-sortingState="@SortingEnum.CityDesc">City Descending</a>&nbsp;&nbsp;
+					<a asp-action="OwnSnapshots" asp-all-route-data="@GetRouteData(Model.filter)" asp-route-sortingState="@SortingEnum.CountryAsc">Country Ascending</a>&nbsp;&nbsp;
+					<a asp-action="OwnSnapshots" asp-all-route-data="@GetRouteData(Model.filter)" asp-route-sortingState="@SortingEnum.CountryDesc">Country Descending</a>
+					<br />
+					<!-- Temperature -->
+					<a asp-action="OwnSnapshots" asp-all-route-data="@GetRouteData(Model.filter)" asp-route-sortingState="@SortingEnum.TempAsc">Temp Ascending</a>&nbsp;&nbsp;
+					<a asp-action="OwnSnapshots" asp-all-route-data="@GetRouteData(Model.filter)" asp-route-sortingState="@SortingEnum.TempDesc">Temp Descending</a>&nbsp;&nbsp;
+					<a asp-action="OwnSnapshots" asp-all-route-data="@GetRouteData(Model.filter)" asp-route-sortingState="@SortingEnum.TempFeelsLikeAsc">Temp Feels Like Ascending</a>&nbsp;&nbsp;
+					<a asp-action="OwnSnapshots" asp-all-route-data="@GetRouteData(Model.filter)" asp-route-sortingState="@SortingEnum.TempFeelsLikeDesc">Temp Feels Like Descending</a>
+					<br />
+					<!-- Min/Max Temperature -->
+					<a asp-action="OwnSnapshots" asp-all-route-data="@GetRouteData(Model.filter)" asp-route-sortingState="@SortingEnum.TempMinAsc">Temp Min Ascending</a>&nbsp;&nbsp;
+					<a asp-action="OwnSnapshots" asp-all-route-data="@GetRouteData(Model.filter)" asp-route-sortingState="@SortingEnum.TempMinDesc">Temp Min Descending</a>&nbsp;&nbsp;
+					<a asp-action="OwnSnapshots" asp-all-route-data="@GetRouteData(Model.filter)" asp-route-sortingState="@SortingEnum.TempMaxAsc">Temp Max Ascending</a>&nbsp;&nbsp;
+					<a asp-action="OwnSnapshots" asp-all-route-data="@GetRouteData(Model.filter)" asp-route-sortingState="@SortingEnum.TempMaxDesc">Temp Max Descending</a>
+					<br />
+					<!-- Pressure, Humidity, Wind Speed -->
+					<a asp-action="OwnSnapshots" asp-all-route-data="@GetRouteData(Model.filter)" asp-route-sortingState="@SortingEnum.PressureAsc">Pressure Ascending</a>&nbsp;&nbsp;
+					<a asp-action="OwnSnapshots" asp-all-route-data="@GetRouteData(Model.filter)" asp-route-sortingState="@SortingEnum.PressureDesc">Pressure Descending</a>&nbsp;&nbsp;
+					<a asp-action="OwnSnapshots" asp-all-route-data="@GetRouteData(Model.filter)" asp-route-sortingState="@SortingEnum.HumidityAsc">Humidity Ascending</a>&nbsp;&nbsp;
+					<a asp-action="OwnSnapshots" asp-all-route-data="@GetRouteData(Model.filter)" asp-route-sortingState="@SortingEnum.HumidityDesc">Humidity Descending</a>&nbsp;&nbsp;
+					<a asp-action="OwnSnapshots" asp-all-route-data="@GetRouteData(Model.filter)" asp-route-sortingState="@SortingEnum.WindSpeedAsc">Wind Speed Ascending</a>&nbsp;&nbsp;
+					<a asp-action="OwnSnapshots" asp-all-route-data="@GetRouteData(Model.filter)" asp-route-sortingState="@SortingEnum.WindSpeedDesc">Wind Speed Descending</a>
+
+					<hr>
+					@if (Model.items != null && Model.items.Any())
+					{
+						<div class="row">
+							@foreach (var snapshot in Model.items)
+							{
+								<div class="col-4 col-6-medium col-12-small">
+									<section class="box">
+										<header>
+											<h3>@snapshot.Time</h3>
+											<h2>@snapshot.City.CityTitle_en</h2>
+											<h3>@snapshot.City.Country.CountryTitle_en</h3>
+
+											<img src="@snapshot.icon" alt="Weather icon">
+
+											<p>weather - @snapshot.weather;</p>
+											<p>temp - @snapshot.temp C;</p>
+											<p>temp feels like - @snapshot.temp_feels_like C;</p>
+											<p>temp min - @snapshot.temp_min C;</p>
+											<p>temp max - @snapshot.temp_max C;</p>
+											<p>pressure - @snapshot.pressure Pa;</p>
+											<p>humidity - @snapshot.humidity %;</p>
+											<p>wind speed - @snapshot.wind_speed m/s</p>
+										</header>
+										<footer>
+											<ul class="actions">
+												<li>
+													<form asp-action="DeleteSnapshot" asp-controller="OwnCabinet" method="post"
+														  data-ajax="true"
+														  data-ajax-method="POST"
+														  data-ajax-success="onAjaxSuccess"
+														  data-ajax-failure="onAjaxFailure">
+
+														<input type="hidden" name="snapshotId" value="@snapshot.Id" />
+														@Html.AntiForgeryToken()
+														<button type="submit" class="button alt">Delete snapshot</button>
+														<span class="js-ajax-result" style="margin-left: 10px;"></span>
+													</form>
+												</li>
+											</ul>
+										</footer>
+									</section>
+								</div>
+							}
+						</div>
+					}
+					<footer>
+						<ul class="actions">
+							@if (Model.pageViewModel.HasPreviousPage())
+							{
+								<li>
+									<a class="button alt large" asp-action="OwnSnapshots"
+									   asp-all-route-data="@GetRouteData(Model.filter)"
+									   asp-route-sortingState="@Model.sortingState"
+									   asp-route-page="@(Model.pageViewModel.page - 1)">
+										<i class="glyphicon glyphicon-chevron-left"></i> Backward
+									</a>
+								</li>
+							}
+							@if (Model.pageViewModel.HasNextPage())
+							{
+								<li>
+									<a class="button large" asp-action="OwnSnapshots"
+									   asp-all-route-data="@GetRouteData(Model.filter)"
+									   asp-route-sortingState="@Model.sortingState"
+									   asp-route-page="@(Model.pageViewModel.page + 1)">
+										Forward <i class="glyphicon glyphicon-chevron-right"></i>
+									</a>
+								</li>
+							}
+						</ul>
+					</footer>
+				</section>
+			</div>
+		</div>
+	</div>
+</section>

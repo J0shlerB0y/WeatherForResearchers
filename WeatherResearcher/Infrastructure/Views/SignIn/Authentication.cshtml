@@ -1,0 +1,79 @@
+@using Infrastructure.Models
+@using UseCases.Models
+@model DataToAuth
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<style>
+	@@font-face {
+		font-family: 'FontAwesome';
+		src: url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2') format('woff2'), url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff') format('woff'), url('https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/fonts/fontawesome-webfont.ttf') format('truetype');
+		font-weight: normal;
+		font-style: normal
+	}
+
+	.glyphicon {
+		display: inline-block;
+		font: normal normal normal 14px/1 FontAwesome;
+		font-size: inherit;
+		text-rendering: auto;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale
+	}
+
+	.glyphicon-chevron-right:before {
+		content: "\f054";
+	}
+
+	.glyphicon-chevron-left:before {
+		content: "\f053";
+	}
+
+	.error-message ul {
+		list-style-type: none;
+		padding-left: 0;
+		color: orangered; 
+	}
+</style>
+
+<!-- Main -->
+<section id="main">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<!-- Loging -->
+				<section>
+					<header class="major">
+						<h2>Authorization</h2>
+					</header>
+					<form method="post" asp-controller="SignIn" asp-action="Login">
+						<header>
+							<div asp-validation-summary="ModelOnly" class="error-message"></div>
+
+							<h3>Login: </h3>
+							<input asp-for="Login" type="text" class="form-control" />
+							<span asp-validation-for="Login" class="error-message"></span>
+							<br />
+
+							<h3>Passowrd: </h3>
+							<input asp-for="Password" type="password" class="form-control" />
+							<span asp-validation-for="Password" class="error-message"></span>
+						</header>
+						<footer>
+							<ul class="actions">
+								<input type="submit" value="Log in" class="button alt" />
+							</ul>
+						</footer>
+					</form>
+				</section>
+				<!-- Registration -->
+				<section>
+					<header class="major">
+						<h2><a asp-action="Registration" asp-controller="SignIn">Registration</a></h2>
+					</header>
+				</section>
+			</div>
+			<div class="col-12">
+			</div>
+		</div>
+	</div>
+</section>

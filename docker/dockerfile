@@ -1,0 +1,32 @@
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
+
+COPY WeatherResearcher/WeatherResearcher.sln ./
+COPY WeatherResearcher/Domain/Domain.csproj WeatherResearcher/Domain/
+COPY WeatherResearcher/UseCases/UseCases.csproj WeatherResearcher/UseCases/
+COPY WeatherResearcher/Infrastructure/Infrastructure.csproj WeatherResearcher/Infrastructure/
+
+RUN dotnet restore WeatherResearcher/Infrastructure/Infrastructure.csproj
+
+COPY WeatherResearcher/ WeatherResearcher/
+RUN dotnet publish WeatherResearcher/Infrastructure/Infrastructure.csproj -c Release -o /app/out
+
+# NOTE: User-secrets are intended for development only. In production, prefer env vars or secret managers.
+RUN dotnet user-secrets set --id "29212343-3792-4fd3-aed7-c937f81dcb41" "JwtSettings:SecretKey" "3qX+/sVz8pA?hGkMbQeThWmZq4t7B!z%C*F-JaNdRfUjXn2r5u1x2A?D(G+KbpES" \
+    && dotnet user-secrets set --id "29212343-3792-4fd3-aed7-c937f81dcb41" "JwtSettings:Issuer" "WeatherResearcher" \
+    && dotnet user-secrets set --id "29212343-3792-4fd3-aed7-c937f81dcb41" "JwtSettings:Audience" "WeatherResearcher" \
+    && dotnet user-secrets set --id "29212343-3792-4fd3-aed7-c937f81dcb41" "JwtSettings:ExpiryDays" "1" \
+    && dotnet user-secrets set --id "29212343-3792-4fd3-aed7-c937f81dcb41" "ConnectionString" "Server=db;Port=3306;Database=weather_for_researchers;Uid=root;Pwd=localroot1289;" \
+    && dotnet user-secrets set --id "29212343-3792-4fd3-aed7-c937f81dcb41" "OpenWeatherMapKey" "..."
+
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
+WORKDIR /app
+
+COPY --from=build /app/out ./
+
+ENV ASPNETCORE_ENVIRONMENT=Development
+COPY --from=build /root/.microsoft/usersecrets /root/.microsoft/usersecrets
+
+EXPOSE 8080
+ENV ASPNETCORE_URLS=http://+:8080
+ENTRYPOINT ["dotnet", "Infrastructure.dll"]

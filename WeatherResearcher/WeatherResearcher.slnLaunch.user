@@ -1,0 +1,19 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "UseCases\\UseCases.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "Domain\\Domain.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "Infrastructure\\Infrastructure.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

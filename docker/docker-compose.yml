@@ -1,0 +1,42 @@
+version: '3.8'
+
+networks:
+  weatherresearcher_network:
+    driver: bridge
+
+services:
+  web:
+    build:
+      context: ..
+      dockerfile: docker/dockerfile
+    ports:
+      - "8080:8080"
+    restart: always
+    depends_on:
+      - db
+    networks:
+      - weatherresearcher_network
+
+  db:
+    image: mysql:9.0.1
+    environment:
+      TZ: Europe/Moscow
+      MYSQL_ROOT_PASSWORD: localroot1289
+      MYSQL_DATABASE: weather_for_researchers
+      MYSQL_PASSWORD: localroot1289
+    volumes:
+      - datadir:/var/lib/mysql
+      # Initialize schema in the required order
+      - ../sql/countries.sql:/docker-entrypoint-initdb.d/01_countries.sql:ro
+      - ../sql/cities.sql:/docker-entrypoint-initdb.d/02_cities.sql:ro
+      - ../sql/users.sql:/docker-entrypoint-initdb.d/03_users.sql:ro
+      - ../sql/userscities.sql:/docker-entrypoint-initdb.d/04_userscities.sql:ro
+      - ../sql/snapshots.sql:/docker-entrypoint-initdb.d/05_snapshots.sql:ro
+      - ../sql/accesstoken.sql:/docker-entrypoint-initdb.d/06_accesstoken.sql:ro
+    ports:
+      - "3306:3306"
+    networks:
+      - weatherresearcher_network
+
+volumes:
+  datadir:

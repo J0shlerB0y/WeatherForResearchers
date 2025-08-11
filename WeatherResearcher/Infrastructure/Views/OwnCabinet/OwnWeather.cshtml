@@ -1,0 +1,171 @@
+@using Infrastructure.Models
+@using Domain
+@model ViewModel<WeatherWithCityModel, FilterCityParametr>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<style>
+	@@font-face {
+		font-family: 'FontAwesome';
+		src: url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2') format('woff2'), url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff') format('woff'), url('https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/fonts/fontawesome-webfont.ttf') format('truetype');
+		font-weight: normal;
+		font-style: normal
+	}
+
+	.glyphicon {
+		display: inline-block;
+		font: normal normal normal 14px/1 FontAwesome;
+		font-size: inherit;
+		text-rendering: auto;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale
+	}
+
+	.glyphicon-chevron-right:before {
+		content: "\f054";
+	}
+
+	.glyphicon-chevron-left:before {
+		content: "\f053";
+	}
+</style>
+
+<section id="main">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<section>
+					<header class="major">
+						<h2><a asp-action="OwnSnapshots" asp-controller="OwnCabinet">Snapshots</a></h2>
+					</header>
+				</section>
+				<section>
+					<header class="major">
+						<h2>Filtration</h2>
+					</header>
+					<form method="get">
+						<header>
+							<h3>City: </h3>
+							<input asp-for="filter.City" class="form-control" />
+							<br />
+							<h3>Country: </h3>
+							<input asp-for="filter.Country" class="form-control" />
+						</header>
+						<footer>
+							<ul class="actions">
+								<input type="submit" value="Filtrate" class="button alt" />
+							</ul>
+						</footer>
+					</form>
+					<header class="major">
+						<h2>Sort by</h2>
+					</header>
+					<a asp-action="OwnWeather" asp-route-filter.City="@Model.filter?.City" asp-route-filter.Country="@Model.filter?.Country" asp-route-sortingState="@SortingEnum.CityAsc">City Ascending</a>&nbsp;&nbsp;
+					<a asp-action="OwnWeather" asp-route-filter.City="@Model.filter?.City" asp-route-filter.Country="@Model.filter?.Country" asp-route-sortingState="@SortingEnum.CountryAsc">Country Ascending</a>&nbsp;&nbsp;
+					<a asp-action="OwnWeather" asp-route-filter.City="@Model.filter?.City" asp-route-filter.Country="@Model.filter?.Country" asp-route-sortingState="@SortingEnum.CityDesc">City Descending</a>&nbsp;&nbsp;
+					<a asp-action="OwnWeather" asp-route-filter.City="@Model.filter?.City" asp-route-filter.Country="@Model.filter?.Country" asp-route-sortingState="@SortingEnum.CountryDesc">Country Descending</a>
+					<hr>
+					@if (Model.items != null && Model.items.Any())
+					{
+						<div class="row">
+							@foreach (var item in Model.items)
+							{
+								<div class="col-4 col-6-medium col-12-small">
+									<section class="box">
+										<header>
+											<h2>@item.city.CityTitle_en</h2>
+											<h3>@item.city.Country.CountryTitle_en</h3>
+
+											<img src="@item.weather.icon" alt="Weather icon">
+
+											<p>weather - @item.weather.weather;</p>
+											<p>temp - @item.weather.temp C;</p>
+											<p>temp feels like - @item.weather.temp_feels_like C;</p>
+											<p>temp min - @item.weather.temp_min C;</p>
+											<p>temp max - @item.weather.temp_max C;</p>
+											<p>pressure - @item.weather.pressure Pa;</p>
+											<p>humidity - @item.weather.humidity %;</p>
+											<p>wind speed - @item.weather.wind_speed m/s</p>
+										</header>
+										<footer>
+											<ul class="actions">
+												<li>
+													<form asp-action="Unsubsribe" asp-controller="OwnCabinet" method="post"
+														  data-ajax="true"
+														  data-ajax-method="POSR"
+														  data-ajax-success="onAjaxSuccess"
+														  data-ajax-failure="onAjaxFailure">
+
+														<input type="hidden" name="cityId" value="@item.city.Id" />
+														@Html.AntiForgeryToken()
+														<button type="submit" class="button alt">Unsubscribe</button>
+														<span class="js-ajax-result" style="margin-left: 10px;"></span>
+													</form>
+												</li>
+											</ul>
+										</footer>
+										<footer>
+											<ul class="actions">
+												<li>
+													<form asp-action="Snapshot" asp-controller="Home" method="post"
+														  data-ajax="true"
+														  data-ajax-method="POST"
+														  data-ajax-success="onAjaxSuccess"
+														  data-ajax-failure="onAjaxFailure">
+
+														<input type="hidden" name="cityId" value="@item.city.Id" />
+
+														<input type="hidden" name="weather.weather" value="@item.weather.weather" />
+														<input type="hidden" name="weather.icon" value="@item.weather.icon" />
+														<input type="hidden" name="weather.temp" value="@item.weather.temp" />
+														<input type="hidden" name="weather.temp_feels_like" value="@item.weather.temp_feels_like" />
+														<input type="hidden" name="weather.temp_min" value="@item.weather.temp_min" />
+														<input type="hidden" name="weather.temp_max" value="@item.weather.temp_max" />
+														<input type="hidden" name="weather.pressure" value="@item.weather.pressure" />
+														<input type="hidden" name="weather.humidity" value="@item.weather.humidity" />
+														<input type="hidden" name="weather.wind_speed" value="@item.weather.wind_speed" />
+
+														@Html.AntiForgeryToken()
+														<button type="submit" class="button alt">Snapshot</button>
+														<span class="js-ajax-result" style="margin-left: 10px;"></span>
+													</form>
+												</li>
+											</ul>
+										</footer>
+									</section>
+								</div>
+							}
+						</div>
+					}
+					<footer>
+						<ul class="actions">
+							@if (Model.pageViewModel.HasPreviousPage())
+							{
+								<li>
+									<a class="button alt large" asp-action="OwnWeather"
+									   asp-route-page="@(Model.pageViewModel.page - 1)"
+									   asp-route-filter.City="@Model.filter?.City"
+									   asp-route-filter.Country="@Model.filter?.Country"
+									   asp-route-sortingState="@Model.sortingState">
+										<i class="glyphicon glyphicon-chevron-left"></i> Backward
+									</a>
+								</li>
+							}
+							@if (Model.pageViewModel.HasNextPage())
+							{
+								<li>
+									<a class="button large" asp-action="OwnWeather"
+									   asp-route-page="@(Model.pageViewModel.page + 1)"
+									   asp-route-filter.City="@Model.filter?.City"
+									   asp-route-filter.Country="@Model.filter?.Country"
+									   asp-route-sortingState="@Model.sortingState">
+										Forward <i class="glyphicon glyphicon-chevron-right"></i>
+									</a>
+								</li>
+							}
+						</ul>
+					</footer>
+				</section>
+			</div>
+		</div>
+	</div>
+</section>
